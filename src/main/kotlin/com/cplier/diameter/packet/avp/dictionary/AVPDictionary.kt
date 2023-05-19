@@ -1,0 +1,5732 @@
+package com.cplier.diameter.packet.avp.dictionary
+
+import com.cplier.diameter.*
+
+
+private val dictionary: Map<AVPKey, AVPDictionaryData> = hashMapOf<AVPKey, AVPDictionaryData>().apply sb@{
+
+  /**
+   * Adding AVP dictionaries for standard specification.
+   *
+   *
+   */
+  fun add(name: String, code: Long, flags: Byte, vendorId: Long, dataType: Int) {
+    val key = AVPKey(code, vendorId)
+    val dictData =
+      if (dataType == DT_GROUPED) GroupedAVPDictionaryData(
+        name,
+        code,
+        flags,
+        vendorId,
+        dataType
+      ) else AVPDictionaryData(
+        name,
+        code,
+        flags,
+        vendorId,
+        dataType
+      )
+    this@sb += mapOf(key to dictData)
+  }
+
+  add("1xRTT-RCID", AC_1XRTT_RCID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "3GPP-AAA-Server-Name",
+    AC_3GPP_AAA_SERVER_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_IDENTITY
+  )
+  add(
+    "3GPP-Allocate-IP-Type",
+    AC_3GPP_ALLOCATE_IP_TYPE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "3GPP-Camel-Charging-Info",
+    AC_3GPP_CAMEL_CHARGING_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "3GPP-Charging-Characteristics",
+    AC_3GPP_CHARGING_CHARACTERISTICS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "3GPP-Charging-DNS-Servers",
+    AC_3GPP_CHARGING_DNS_SERVERS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "3GPP-Charging-Gateway-Address",
+    AC_3GPP_CHARGING_GATEWAY_ADDRESS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add(
+    "3GPP-Charging-Gateway-IPv6-Address",
+    AC_3GPP_CHARGING_GATEWAY_IPV6_ADDRESS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("3GPP-Charging-ID", AC_3GPP_CHARGING_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("3GPP-GGSN-Address", AC_3GPP_GGSN_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "3GPP-GGSN-IPv6-Address",
+    AC_3GPP_GGSN_IPV6_ADDRESS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("3GPP-GGSN-MCC-MNC", AC_3GPP_GGSN_MCC_MNC, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "3GPP-GPRS-Negotiated-QoS-Profile",
+    AC_3GPP_GPRS_NEGOTIATED_QOS_PROFILE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("3GPP-IMEISV", AC_3GPP_IMEISV, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("3GPP-IMSI", AC_3GPP_IMSI, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("3GPP-IMSI-MCC-MNC", AC_3GPP_IMSI_MCC_MNC, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("3GPP-MS-TimeZone", AC_3GPP_MS_TIMEZONE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "3GPP-Negotiated-DSCP",
+    AC_3GPP_NEGOTIATED_DSCP,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("3GPP-NSAPI", AC_3GPP_NSAPI, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("3GPP-Packet-Filter", AC_3GPP_PACKET_FILTER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("3GPP-PDP-Type", AC_3GPP_PDP_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "3GPP-PS-Data-Off-Status",
+    AC_3GPP_PS_DATA_OFF_STATUS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("3GPP-RAT-Type", AC_3GPP_RAT_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("3GPP-Selection-Mode", AC_3GPP_SELECTION_MODE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "3GPP-Session-Stop-Indicator",
+    AC_3GPP_SESSION_STOP_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("3GPP-SGSN-Address", AC_3GPP_SGSN_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "3GPP-SGSN-IPv6-Address",
+    AC_3GPP_SGSN_IPV6_ADDRESS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("3GPP-SGSN-MCC-MNC", AC_3GPP_SGSN_MCC_MNC, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "3GPP-SGSN-MCC-MNC-Gx",
+    AC_3GPP_SGSN_MCC_MNC_GX,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "3GPP-Teardown-Indicator",
+    AC_3GPP_TEARDOWN_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "3GPP-User-Location-Info",
+    AC_3GPP_USER_LOCATION_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "3GPP-User-Location-Info-Time",
+    AC_3GPP_USER_LOCATION_INFO_TIME,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("3GPP-WLAN-APN-Id", AC_3GPP_WLAN_APN_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("3GPP2-BSID", AC_3GPP2_BSID, AVP_FLAG_V_M, VENDOR_ID_3GPP2, DT_UTF8STRING)
+  add("3GPP2-MEID", AC_3GPP2_MEID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("A-MSISDN", AC_A_MSISDN, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "AAA-Failure-Indication",
+    AC_AAA_FAILURE_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("AAR-Flags", AC_AAR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Abort-Cause", AC_ABORT_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Absent-Subscriber-Diagnostic-T4",
+    AC_ABSENT_SUBSCRIBER_DIAGNOSTIC_T4,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Absent-User-Diagnostic-SM",
+    AC_ABSENT_USER_DIAGNOSTIC_SM,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Absolute-End-Fractional-Seconds",
+    AC_ABSOLUTE_END_FRACTIONAL_SECONDS,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Absolute-End-Time", AC_ABSOLUTE_END_TIME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Absolute-Start-Fractional-Seconds",
+    AC_ABSOLUTE_START_FRACTIONAL_SECONDS,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Absolute-Start-Time", AC_ABSOLUTE_START_TIME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_TIME)
+  add(
+    "Acceptable-Service-Info",
+    AC_ACCEPTABLE_SERVICE_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Access-Authorization-Flags",
+    AC_ACCESS_AUTHORIZATION_FLAGS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Access-Availability-Change-Reason",
+    AC_ACCESS_AVAILABILITY_CHANGE_REASON,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Access-Network-Charging-Address",
+    AC_ACCESS_NETWORK_CHARGING_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add(
+    "Access-Network-Charging-Identifier",
+    AC_ACCESS_NETWORK_CHARGING_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Access-Network-Charging-Identifier-Gx",
+    AC_ACCESS_NETWORK_CHARGING_IDENTIFIER_GX,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Access-Network-Charging-Identifier-Value",
+    AC_ACCESS_NETWORK_CHARGING_IDENTIFIER_VALUE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Access-Network-Info", AC_ACCESS_NETWORK_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Access-Network-Information",
+    AC_ACCESS_NETWORK_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Access-Restriction-Data",
+    AC_ACCESS_RESTRICTION_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Account-Expiration", AC_ACCOUNT_EXPIRATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "Accounting-Auth-Method",
+    AC_ACCOUNTING_AUTH_METHOD,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Accounting-EAP-Auth-Method",
+    AC_ACCOUNTING_EAP_AUTH_METHOD,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Accounting-Input-Octets",
+    AC_ACCOUNTING_INPUT_OCTETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Accounting-Input-Packets",
+    AC_ACCOUNTING_INPUT_PACKETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Accounting-Output-Octets",
+    AC_ACCOUNTING_OUTPUT_OCTETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Accounting-Output-Packets",
+    AC_ACCOUNTING_OUTPUT_PACKETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Accounting-Realtime-Required",
+    AC_ACCOUNTING_REALTIME_REQUIRED,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Accounting-Record-Number",
+    AC_ACCOUNTING_RECORD_NUMBER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Accounting-Record-Type",
+    AC_ACCOUNTING_RECORD_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Accounting-Sub-Session-Id",
+    AC_ACCOUNTING_SUB_SESSION_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add("Acct-Application-Id", AC_ACCT_APPLICATION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Acct-Authentic", AC_ACCT_AUTHENTIC, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Acct-Delay-Time", AC_ACCT_DELAY_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Acct-Interim-Interval",
+    AC_ACCT_INTERIM_INTERVAL,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Acct-Link-Count", AC_ACCT_LINK_COUNT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Acct-Multi-Session-Id",
+    AC_ACCT_MULTI_SESSION_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Acct-Session-Id", AC_ACCT_SESSION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Acct-Session-Time", AC_ACCT_SESSION_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Acct-Tunnel-Connection",
+    AC_ACCT_TUNNEL_CONNECTION,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Acct-Tunnel-Packets-Lost",
+    AC_ACCT_TUNNEL_PACKETS_LOST,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Accumulated-Cost", AC_ACCUMULATED_COST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Accuracy", AC_ACCURACY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Accuracy-Fulfilment-Indicator",
+    AC_ACCURACY_FULFILMENT_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Action-Type", AC_ACTION_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Active-APN", AC_ACTIVE_APN, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Active-Time", AC_ACTIVE_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("Adaptations", AC_ADAPTATIONS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("ADC-Revalidation-Time", AC_ADC_REVALIDATION_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("ADC-Rule-Base-Name", AC_ADC_RULE_BASE_NAME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("ADC-Rule-Definition", AC_ADC_RULE_DEFINITION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("ADC-Rule-Install", AC_ADC_RULE_INSTALL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("ADC-Rule-Name", AC_ADC_RULE_NAME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("ADC-Rule-Remove", AC_ADC_RULE_REMOVE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("ADC-Rule-Report", AC_ADC_RULE_REPORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Additional-Content-Information",
+    AC_ADDITIONAL_CONTENT_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Additional-Context-Identifier",
+    AC_ADDITIONAL_CONTEXT_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Additional-Exception-Reports",
+    AC_ADDITIONAL_EXCEPTION_REPORTS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Additional-Serving-Node",
+    AC_ADDITIONAL_SERVING_NODE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Additional-Serving-Node-T4",
+    AC_ADDITIONAL_SERVING_NODE_T4,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Additional-Type-Information",
+    AC_ADDITIONAL_TYPE_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Address-Data", AC_ADDRESS_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Address-Domain", AC_ADDRESS_DOMAIN, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Address-Type", AC_ADDRESS_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Addressee-Type", AC_ADDRESSEE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Adjacent-Access-Restriction-Data",
+    AC_ADJACENT_ACCESS_RESTRICTION_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Adjacent-PLMNs", AC_ADJACENT_PLMNS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "AESE-Communication-Pattern",
+    AC_AESE_COMMUNICATION_PATTERN,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "AESE-Communication-Pattern-Config-Status",
+    AC_AESE_COMMUNICATION_PATTERN_CONFIG_STATUS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "AESE-Communication-Pattern_S6",
+    AC_AESE_COMMUNICATION_PATTERN_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("AESE-Error-Report", AC_AESE_ERROR_REPORT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "AF-Application-Identifier",
+    AC_AF_APPLICATION_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "AF-Charging-Identifier",
+    AC_AF_CHARGING_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "AF-Correlation-Information",
+    AC_AF_CORRELATION_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("AF-Requested-Data", AC_AF_REQUESTED_DATA, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "AF-Signalling-Protocol",
+    AC_AF_SIGNALLING_PROTOCOL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Age-Of-Location-Estimate",
+    AC_AGE_OF_LOCATION_ESTIMATE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Age-Of-Location-Information",
+    AC_AGE_OF_LOCATION_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Aggregated-Congestion-Info",
+    AC_AGGREGATED_CONGESTION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Aggregated-RUCI-Report",
+    AC_AGGREGATED_RUCI_REPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("AIR-Flags", AC_AIR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Alert-Reason", AC_ALERT_REASON, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "All-APN-Configurations-Included-Indicator",
+    AC_ALL_APN_CONFIGURATIONS_INCLUDED_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Allocation-Retention-Priority",
+    AC_ALLOCATION_RETENTION_PRIORITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Allowed-PLMN-List", AC_ALLOWED_PLMN_LIST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Allowed-WAF-WWSF-Identities",
+    AC_ALLOWED_WAF_WWSF_IDENTITIES,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Alternate-Charged-Party-Address",
+    AC_ALTERNATE_CHARGED_PARTY_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("AMBR", AC_AMBR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("AN-GW-Address", AC_AN_GW_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("AN-GW-Status", AC_AN_GW_STATUS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("AN-Trusted", AC_AN_TRUSTED, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("ANID", AC_ANID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("AoC-Cost-Information", AC_AOC_COST_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("AoC-Format", AC_AOC_FORMAT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("AoC-Information", AC_AOC_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("AoC-Request-Type", AC_AOC_REQUEST_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("AoC-Service", AC_AOC_SERVICE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "AoC-Service-Obligatory-Type",
+    AC_AOC_SERVICE_OBLIGATORY_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("AoC-Service-Type", AC_AOC_SERVICE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "AoC-Subscription-Information",
+    AC_AOC_SUBSCRIPTION_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "APN-Aggregate-Max-Bitrate-DL",
+    AC_APN_AGGREGATE_MAX_BITRATE_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "APN-Aggregate-Max-Bitrate-UL",
+    AC_APN_AGGREGATE_MAX_BITRATE_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("APN-Authorized", AC_APN_AUTHORIZED, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("APN-Barring-Type", AC_APN_BARRING_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("APN-Configuration", AC_APN_CONFIGURATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "APN-Configuration-Profile",
+    AC_APN_CONFIGURATION_PROFILE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("APN-Configuration_S6", AC_APN_CONFIGURATION_S6, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("APN-OI-Replacement", AC_APN_OI_REPLACEMENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("APN-Rate-Control", AC_APN_RATE_CONTROL, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "APN-Rate-Control-Downlink",
+    AC_APN_RATE_CONTROL_DOWNLINK,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "APN-Rate-Control-Uplink",
+    AC_APN_RATE_CONTROL_UPLINK,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("APN-Validity-Time", AC_APN_VALIDITY_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Applic-ID", AC_APPLIC_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Application-Detection-Information",
+    AC_APPLICATION_DETECTION_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Application-Port-Identifier",
+    AC_APPLICATION_PORT_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Application-Provided-Called-Party-Address",
+    AC_APPLICATION_PROVIDED_CALLED_PARTY_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Application-Server", AC_APPLICATION_SERVER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Application-Server-ID",
+    AC_APPLICATION_SERVER_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Application-Server-Information",
+    AC_APPLICATION_SERVER_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Application-Service-Provider-Identity",
+    AC_APPLICATION_SERVICE_PROVIDER_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Application-Service-Type",
+    AC_APPLICATION_SERVICE_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Application-Session-ID",
+    AC_APPLICATION_SESSION_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "ARAP-Challenge-Response",
+    AC_ARAP_CHALLENGE_RESPONSE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("ARAP-Features", AC_ARAP_FEATURES, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("ARAP-Password", AC_ARAP_PASSWORD, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("ARAP-Security", AC_ARAP_SECURITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("ARAP-Security-Data", AC_ARAP_SECURITY_DATA, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("ARAP-Zone-Access", AC_ARAP_ZONE_ACCESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Area", AC_AREA, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Area-Definition", AC_AREA_DEFINITION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Area-Event-Info", AC_AREA_EVENT_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Area-Identification", AC_AREA_IDENTIFICATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Area-Scope", AC_AREA_SCOPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Area-Type", AC_AREA_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("AS-Number", AC_AS_NUMBER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Associated-Identities", AC_ASSOCIATED_IDENTITIES, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Associated-Party-Address",
+    AC_ASSOCIATED_PARTY_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Associated-Registered-Identities",
+    AC_ASSOCIATED_REGISTERED_IDENTITIES,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Associated-URI", AC_ASSOCIATED_URI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Association-Type", AC_ASSOCIATION_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Auth-Application-Id", AC_AUTH_APPLICATION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Auth-Grace-Period", AC_AUTH_GRACE_PERIOD, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Auth-Request-Type", AC_AUTH_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Auth-Session-State", AC_AUTH_SESSION_STATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Authentication-Info", AC_AUTHENTICATION_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Authentication-Information-SIM",
+    AC_AUTHENTICATION_INFORMATION_SIM,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Authentication-Method",
+    AC_AUTHENTICATION_METHOD,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Authorization-Information-SIM",
+    AC_AUTHORIZATION_INFORMATION_SIM,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Authorization-Lifetime",
+    AC_AUTHORIZATION_LIFETIME,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("AUTN", AC_AUTN, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Aux-Applic-Info", AC_AUX_APPLIC_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Barometric-Pressure", AC_BAROMETRIC_PRESSURE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Base-Time-Interval", AC_BASE_TIME_INTERVAL, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Bearer-Control-Mode", AC_BEARER_CONTROL_MODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Bearer-Identifier", AC_BEARER_IDENTIFIER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Bearer-Operation", AC_BEARER_OPERATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Bearer-Service", AC_BEARER_SERVICE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Bearer-Usage", AC_BEARER_USAGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("BSSGP-Cause", AC_BSSGP_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("BSSID", AC_BSSID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("C-VID-End", AC_C_VID_END, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("C-VID-Start", AC_C_VID_START, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Call-Barring-Info", AC_CALL_BARRING_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Call-ID-SIP-Header", AC_CALL_ID_SIP_HEADER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Call-Reference-Info", AC_CALL_REFERENCE_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Call-Reference-Number",
+    AC_CALL_REFERENCE_NUMBER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Callback-Id", AC_CALLBACK_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Callback-Number", AC_CALLBACK_NUMBER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Called-Asserted-Identity",
+    AC_CALLED_ASSERTED_IDENTITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Called-Identity", AC_CALLED_IDENTITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Called-Identity-Change",
+    AC_CALLED_IDENTITY_CHANGE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Called-Party-Address",
+    AC_CALLED_PARTY_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Called-Station-ID", AC_CALLED_STATION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Calling-Party-Address",
+    AC_CALLING_PARTY_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Calling-Station-ID", AC_CALLING_STATION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Cancellation-Type", AC_CANCELLATION_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Carrier-Frequency", AC_CARRIER_FREQUENCY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Carrier-Select-Routing-Information",
+    AC_CARRIER_SELECT_ROUTING_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Cause-Code", AC_CAUSE_CODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_INTEGER_32)
+  add("Cause-Type", AC_CAUSE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("CC-Correlation-Id", AC_CC_CORRELATION_ID, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("CC-Input-Octets", AC_CC_INPUT_OCTETS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Money", AC_CC_MONEY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("CC-Output-Octets", AC_CC_OUTPUT_OCTETS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Request-Number", AC_CC_REQUEST_NUMBER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("CC-Request-Type", AC_CC_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "CC-Service-Specific-Units",
+    AC_CC_SERVICE_SPECIFIC_UNITS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add("CC-Session-Failover", AC_CC_SESSION_FAILOVER, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("CC-Sub-Session-Id", AC_CC_SUB_SESSION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Time", AC_CC_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("CC-Total-Octets", AC_CC_TOTAL_OCTETS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Unit-Type", AC_CC_UNIT_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Cell-Global-Identity",
+    AC_CELL_GLOBAL_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Cell-Portion-ID", AC_CELL_PORTION_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("CG-Address", AC_CG_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("Change-Condition", AC_CHANGE_CONDITION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_INTEGER_32)
+  add("Change-Time", AC_CHANGE_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("CHAP-Algorithm", AC_CHAP_ALGORITHM, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("CHAP-Auth", AC_CHAP_AUTH, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("CHAP-Challenge", AC_CHAP_CHALLENGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("CHAP-Ident", AC_CHAP_IDENT, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("CHAP-Response", AC_CHAP_RESPONSE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Charge-Reason-Code", AC_CHARGE_REASON_CODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Charged-Party", AC_CHARGED_PARTY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Charged-Party_S6", AC_CHARGED_PARTY_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Charging-Characteristics",
+    AC_CHARGING_CHARACTERISTICS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_INTEGER_32
+  )
+  add(
+    "Charging-Characteristics-Selection-Mode",
+    AC_CHARGING_CHARACTERISTICS_SELECTION_MODE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Charging-Correlation-Indicator",
+    AC_CHARGING_CORRELATION_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Charging-Data", AC_CHARGING_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Charging-Information", AC_CHARGING_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Charging-Nodes", AC_CHARGING_NODES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Charging-Per-IP-CAN-Session-Indicator",
+    AC_CHARGING_PER_IP_CAN_SESSION_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Charging-Rule-Base-Name",
+    AC_CHARGING_RULE_BASE_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Charging-Rule-Definition",
+    AC_CHARGING_RULE_DEFINITION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Charging-Rule-Install",
+    AC_CHARGING_RULE_INSTALL,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Charging-Rule-Name", AC_CHARGING_RULE_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Charging-Rule-Remove", AC_CHARGING_RULE_REMOVE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Charging-Rule-Report", AC_CHARGING_RULE_REPORT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Check-Balance-Result", AC_CHECK_BALANCE_RESULT, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("CIA-Flags", AC_CIA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("CIR-Flags", AC_CIR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Civic-Address", AC_CIVIC_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Class", AC_CLASS, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Class-Identifier", AC_CLASS_IDENTIFIER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Classifier", AC_CLASSIFIER, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Classifier-ID", AC_CLASSIFIER_ID, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Client-Address", AC_CLIENT_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("Client-Identity", AC_CLIENT_IDENTITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("CLR-Flags", AC_CLR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("CMR-Flags", AC_CMR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "CN-IP-Multicast-Distribution",
+    AC_CN_IP_MULTICAST_DISTRIBUTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "CN-Operator-Selection-Entity",
+    AC_CN_OPERATOR_SELECTION_ENTITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("CoA-Information", AC_COA_INFORMATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("CoA-IP-Address", AC_COA_IP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("Codec-Data", AC_CODEC_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Collection-Period-RRM-LTE",
+    AC_COLLECTION_PERIOD_RRM_LTE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Collection-Period-RRM-UMTS",
+    AC_COLLECTION_PERIOD_RRM_UMTS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Communication-Duration-Time",
+    AC_COMMUNICATION_DURATION_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Communication-Failure-Information",
+    AC_COMMUNICATION_FAILURE_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Communication-Pattern-Set",
+    AC_COMMUNICATION_PATTERN_SET,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Communication-Pattern-Set_S6",
+    AC_COMMUNICATION_PATTERN_SET_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Complete-Data-List-Included-Indicator",
+    AC_COMPLETE_DATA_LIST_INCLUDED_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Conditional-APN-Aggregate-Max-Bitrate",
+    AC_CONDITIONAL_APN_AGGREGATE_MAX_BITRATE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Conditional-Policy-Information",
+    AC_CONDITIONAL_POLICY_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Conditional-Restriction",
+    AC_CONDITIONAL_RESTRICTION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Confidentiality-Key",
+    AC_CONFIDENTIALITY_KEY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Configuration-Token", AC_CONFIGURATION_TOKEN, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "Congestion-Level-Definition",
+    AC_CONGESTION_LEVEL_DEFINITION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Congestion-Level-Range",
+    AC_CONGESTION_LEVEL_RANGE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Congestion-Level-Set-Id",
+    AC_CONGESTION_LEVEL_SET_ID,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Congestion-Level-Value",
+    AC_CONGESTION_LEVEL_VALUE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Congestion-Location-Id",
+    AC_CONGESTION_LOCATION_ID,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Connect-Info", AC_CONNECT_INFO, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Connection-Action", AC_CONNECTION_ACTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Connectivity-Flags", AC_CONNECTIVITY_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Contact", AC_CONTACT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Content-Class", AC_CONTENT_CLASS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Content-Disposition", AC_CONTENT_DISPOSITION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Content-ID", AC_CONTENT_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Content-Length", AC_CONTENT_LENGTH, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Content-Provider-ID", AC_CONTENT_PROVIDER_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Content-Size", AC_CONTENT_SIZE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Content-Type", AC_CONTENT_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Content-Version", AC_CONTENT_VERSION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_64)
+  add("Context-Identifier", AC_CONTEXT_IDENTIFIER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Cost-Information", AC_COST_INFORMATION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Cost-Unit", AC_COST_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Counter-Value", AC_COUNTER_VALUE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Coupled-Node-Diameter-ID",
+    AC_COUPLED_NODE_DIAMETER_ID,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_IDENTITY
+  )
+  add(
+    "CP-CIoT-EPS-Optimisation-Indicator",
+    AC_CP_CIOT_EPS_OPTIMISATION_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Credit-Control", AC_CREDIT_CONTROL, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Credit-Control-Failure-Handling",
+    AC_CREDIT_CONTROL_FAILURE_HANDLING,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Credit-Management-Status",
+    AC_CREDIT_MANAGEMENT_STATUS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "CS-Service-QoS-Request-Identifier",
+    AC_CS_SERVICE_QOS_REQUEST_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "CS-Service-QoS-Request-Operation",
+    AC_CS_SERVICE_QOS_REQUEST_OPERATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "CS-Service-Resource-Failure-Cause",
+    AC_CS_SERVICE_RESOURCE_FAILURE_CAUSE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "CS-Service-Resource-Report",
+    AC_CS_SERVICE_RESOURCE_REPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "CS-Service-Resource-Result-Operation",
+    AC_CS_SERVICE_RESOURCE_RESULT_OPERATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("CSG-Access-Mode", AC_CSG_ACCESS_MODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("CSG-ID", AC_CSG_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "CSG-Information-Reporting",
+    AC_CSG_INFORMATION_REPORTING,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "CSG-Membership-Indication",
+    AC_CSG_MEMBERSHIP_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "CSG-Subscription-Data",
+    AC_CSG_SUBSCRIPTION_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("CUG-Information", AC_CUG_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Currency-Code", AC_CURRENCY_CODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Current-Location", AC_CURRENT_LOCATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Current-Location-Retrieved",
+    AC_CURRENT_LOCATION_RETRIEVED,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Current-Tariff", AC_CURRENT_TARIFF, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Data-Coding-Scheme", AC_DATA_CODING_SCHEME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_INTEGER_32)
+  add("Data-Reference", AC_DATA_REFERENCE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Day-Of-Month-Mask", AC_DAY_OF_MONTH_MASK, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Day-Of-Week-Mask", AC_DAY_OF_WEEK_MASK, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Daylight-Saving-Time", AC_DAYLIGHT_SAVING_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("DCD-Information", AC_DCD_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("DEA-Flags", AC_DEA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Default-Access", AC_DEFAULT_ACCESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Default-Bearer-Indication",
+    AC_DEFAULT_BEARER_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Default-EPS-Bearer-QoS",
+    AC_DEFAULT_EPS_BEARER_QOS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Default-QoS-Information",
+    AC_DEFAULT_QOS_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Default-QoS-Name", AC_DEFAULT_QOS_NAME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Deferred-Location-Event-Type",
+    AC_DEFERRED_LOCATION_EVENT_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Deferred-Location-Type",
+    AC_DEFERRED_LOCATION_TYPE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Deferred-MT-LR-Data", AC_DEFERRED_MT_LR_DATA, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Delayed-Location-Reporting-Data",
+    AC_DELAYED_LOCATION_REPORTING_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Delivery-Outcome", AC_DELIVERY_OUTCOME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Delivery-Report-Requested",
+    AC_DELIVERY_REPORT_REQUESTED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Delivery-Status", AC_DELIVERY_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("DER-Flags", AC_DER_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("DER-S6b-Flags", AC_DER_S6B_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Deregistration-Reason",
+    AC_DEREGISTRATION_REASON,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Destination-Host", AC_DESTINATION_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add(
+    "Destination-Interface",
+    AC_DESTINATION_INTERFACE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Destination-Realm",
+    AC_DESTINATION_REALM,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add("Destination-SIP-URI", AC_DESTINATION_SIP_URI, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Device-Action", AC_DEVICE_ACTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Device-Notification", AC_DEVICE_NOTIFICATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Diagnostics", AC_DIAGNOSTICS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_INTEGER_32)
+  add(
+    "Diffserv-Code-Point",
+    AC_DIFFSERV_CODE_POINT,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Digest-Algorithm", AC_DIGEST_ALGORITHM, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Digest-HA1", AC_DIGEST_HA1, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Digest-QoP", AC_DIGEST_QOP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Digest-Realm", AC_DIGEST_REALM, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Direct-Debiting-Failure-Handling",
+    AC_DIRECT_DEBITING_FAILURE_HANDLING,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Direction", AC_DIRECTION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Disconnect-Cause", AC_DISCONNECT_CAUSE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "DL-Buffering-Suggested-Packet-Count",
+    AC_DL_BUFFERING_SUGGESTED_PACKET_COUNT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_INTEGER_32
+  )
+  add("Domain-Name", AC_DOMAIN_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Downlink-Rate-Limit",
+    AC_DOWNLINK_RATE_LIMIT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("DRA-Binding", AC_DRA_BINDING, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("DRA-Deployment", AC_DRA_DEPLOYMENT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("DRM-Content", AC_DRM_CONTENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("DRMP", AC_DRMP, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("DSA-Flags", AC_DSA_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("DSAI-Tag", AC_DSAI_TAG, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("DSR-Flags", AC_DSR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Dynamic-Address-Flag",
+    AC_DYNAMIC_ADDRESS_FLAG,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Dynamic-Address-Flag-Extension",
+    AC_DYNAMIC_ADDRESS_FLAG_EXTENSION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "E-UTRAN-Cell-Global-Identity",
+    AC_E_UTRAN_CELL_GLOBAL_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("E-UTRAN-Vector", AC_E_UTRAN_VECTOR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("E2E-Sequence", AC_E2E_SEQUENCE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("EAP-Key-Name", AC_EAP_KEY_NAME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "EAP-Master-Session-Key",
+    AC_EAP_MASTER_SESSION_KEY,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("EAP-Payload", AC_EAP_PAYLOAD, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "EAP-Reissued-Payload",
+    AC_EAP_REISSUED_PAYLOAD,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Early-Media-Description",
+    AC_EARLY_MEDIA_DESCRIPTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("ECGI", AC_ECGI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("eDRX-Cycle-Length", AC_EDRX_CYCLE_LENGTH, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "eDRX-Cycle-Length-Value",
+    AC_EDRX_CYCLE_LENGTH_VALUE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Emergency-Info", AC_EMERGENCY_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Emergency-Services", AC_EMERGENCY_SERVICES, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Enhanced-Coverage-Restriction",
+    AC_ENHANCED_COVERAGE_RESTRICTION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Enhanced-Coverage-Restriction-Data",
+    AC_ENHANCED_COVERAGE_RESTRICTION_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("eNodeB-ID", AC_ENODEB_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("eNodeB-ID_S6", AC_ENODEB_ID_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Envelope", AC_ENVELOPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Envelope-End-Time", AC_ENVELOPE_END_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Envelope-Reporting", AC_ENVELOPE_REPORTING, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Envelope-Start-Time", AC_ENVELOPE_START_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("ePDG-Address", AC_EPDG_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add(
+    "EPS-Location-Information",
+    AC_EPS_LOCATION_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "EPS-Subscribed-QoS-Profile",
+    AC_EPS_SUBSCRIBED_QOS_PROFILE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("EPS-User-State", AC_EPS_USER_STATE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Equipment-Status", AC_EQUIPMENT_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Equivalent-PLMN-List", AC_EQUIVALENT_PLMN_LIST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("ERP-Authorization", AC_ERP_AUTHORIZATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("ERP-Realm", AC_ERP_REALM, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("ERP-RK-Request", AC_ERP_RK_REQUEST, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Error-Diagnostic", AC_ERROR_DIAGNOSTIC, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Error-Message", AC_ERROR_MESSAGE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Error-Reporting-Host",
+    AC_ERROR_REPORTING_HOST,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add("ESMLC-Cell-Info", AC_ESMLC_CELL_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("ETH-Ether-Type", AC_ETH_ETHER_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("ETH-Option", AC_ETH_OPTION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("ETH-Proto-Type", AC_ETH_PROTO_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("ETH-SAP", AC_ETH_SAP, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("EUI64-Address", AC_EUI64_ADDRESS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("EUI64-Address-Mask", AC_EUI64_ADDRESS_MASK, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "EUI64-Address-Mask-Pattern",
+    AC_EUI64_ADDRESS_MASK_PATTERN,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "EUTRAN-Positioning-Data",
+    AC_EUTRAN_POSITIONING_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Event", AC_EVENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Event-Charging-TimeStamp",
+    AC_EVENT_CHARGING_TIMESTAMP,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add("Event-Handling", AC_EVENT_HANDLING, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Event-Report-Indication",
+    AC_EVENT_REPORT_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Event-Threshold-Event-1F",
+    AC_EVENT_THRESHOLD_EVENT_1F,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_INTEGER_32
+  )
+  add(
+    "Event-Threshold-Event-1I",
+    AC_EVENT_THRESHOLD_EVENT_1I,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_INTEGER_32
+  )
+  add(
+    "Event-Threshold-RSRP",
+    AC_EVENT_THRESHOLD_RSRP,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Event-Threshold-RSRQ",
+    AC_EVENT_THRESHOLD_RSRQ,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Event-Timestamp", AC_EVENT_TIMESTAMP, AVP_FLAG_M, VENDOR_ID_NONE, DT_TIME)
+  add("Event-Trigger", AC_EVENT_TRIGGER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Event-Trigger R11", AC_EVENT_TRIGGER_R11, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Event-Type", AC_EVENT_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Excess-Treatment", AC_EXCESS_TREATMENT, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Execution-Time", AC_EXECUTION_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("Experimental-Result", AC_EXPERIMENTAL_RESULT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Experimental-Result-Code",
+    AC_EXPERIMENTAL_RESULT_CODE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Expiration-Date", AC_EXPIRATION_DATE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Expires", AC_EXPIRES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Expiry-Time", AC_EXPIRY_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("Exponent", AC_EXPONENT, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Ext-PDP-Address", AC_EXT_PDP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("Ext-PDP-Type", AC_EXT_PDP_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Extended-APN-AMBR-DL",
+    AC_EXTENDED_APN_AMBR_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-APN-AMBR-UL",
+    AC_EXTENDED_APN_AMBR_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Extended-eNodeB-ID", AC_EXTENDED_ENODEB_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Extended-GBR-DL", AC_EXTENDED_GBR_DL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Extended-GBR-UL", AC_EXTENDED_GBR_UL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Extended-Max-Requested-BW-DL",
+    AC_EXTENDED_MAX_REQUESTED_BW_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Max-Requested-BW-UL",
+    AC_EXTENDED_MAX_REQUESTED_BW_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Max-Supported-BW-DL",
+    AC_EXTENDED_MAX_SUPPORTED_BW_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Max-Supported-BW-UL",
+    AC_EXTENDED_MAX_SUPPORTED_BW_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Min-Desired-BW-DL",
+    AC_EXTENDED_MIN_DESIRED_BW_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Min-Desired-BW-UL",
+    AC_EXTENDED_MIN_DESIRED_BW_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Min-Requested-BW-DL",
+    AC_EXTENDED_MIN_REQUESTED_BW_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Extended-Min-Requested-BW-UL",
+    AC_EXTENDED_MIN_REQUESTED_BW_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Extended-PCO", AC_EXTENDED_PCO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("External-Client", AC_EXTERNAL_CLIENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("External-Identifier", AC_EXTERNAL_IDENTIFIER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "External-Identifier_S6",
+    AC_EXTERNAL_IDENTIFIER_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Failed-AVP", AC_FAILED_AVP, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Feature-List", AC_FEATURE_LIST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Feature-List-ID", AC_FEATURE_LIST_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Feature-List-S6t", AC_FEATURE_LIST_S6T, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Feature-List-T6", AC_FEATURE_LIST_T6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Feature-Supported-In-Final-Target",
+    AC_FEATURE_SUPPORTED_IN_FINAL_TARGET,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "File-Repair-Supported",
+    AC_FILE_REPAIR_SUPPORTED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Filter-ID", AC_FILTER_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Filter-Id", AC_FILTER_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Filter-Rule", AC_FILTER_RULE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Filter-Rule-Precedence",
+    AC_FILTER_RULE_PRECEDENCE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Final-Unit-Action", AC_FINAL_UNIT_ACTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Final-Unit-Indication", AC_FINAL_UNIT_INDICATION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Firmware-Revision", AC_FIRMWARE_REVISION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Fixed-User-Location-Info",
+    AC_FIXED_USER_LOCATION_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Flow-Description", AC_FLOW_DESCRIPTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_IP_FILTER_RULE)
+  add("Flow-Direction", AC_FLOW_DIRECTION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Flow-Information", AC_FLOW_INFORMATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Flow-Label", AC_FLOW_LABEL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Flow-Number", AC_FLOW_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Flow-Status", AC_FLOW_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Flow-Usage", AC_FLOW_USAGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Flows", AC_FLOWS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Fragmentation-Flag", AC_FRAGMENTATION_FLAG, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Framed-Appletalk-Link",
+    AC_FRAMED_APPLETALK_LINK,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Framed-Appletalk-Network",
+    AC_FRAMED_APPLETALK_NETWORK,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Framed-Appletalk-Zone",
+    AC_FRAMED_APPLETALK_ZONE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Framed-Compression", AC_FRAMED_COMPRESSION, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Framed-Interface-Id", AC_FRAMED_INTERFACE_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("Framed-IP-Address", AC_FRAMED_IP_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Framed-IP-Netmask", AC_FRAMED_IP_NETMASK, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Framed-IPv6-Pool", AC_FRAMED_IPV6_POOL, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Framed-IPv6-Prefix", AC_FRAMED_IPV6_PREFIX, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Framed-IPv6-Route", AC_FRAMED_IPV6_ROUTE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Framed-IPX-Network", AC_FRAMED_IPX_NETWORK, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Framed-MTU", AC_FRAMED_MTU, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Framed-Pool", AC_FRAMED_POOL, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Framed-Protocol", AC_FRAMED_PROTOCOL, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Framed-Route", AC_FRAMED_ROUTE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Framed-Routing", AC_FRAMED_ROUTING, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("From-SIP-Header", AC_FROM_SIP_HEADER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("From-Spec", AC_FROM_SPEC, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Full-Network-Name", AC_FULL_NETWORK_NAME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "G-S-U-Pool-Identifier",
+    AC_G_S_U_POOL_IDENTIFIER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("G-S-U-Pool-Reference", AC_G_S_U_POOL_REFERENCE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("GCS-Identifier", AC_GCS_IDENTIFIER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Geodetic-Information",
+    AC_GEODETIC_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Geographical-Information",
+    AC_GEOGRAPHICAL_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "GERAN-GANSS-Postioning-Data",
+    AC_GERAN_GANSS_POSTIONING_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "GERAN-Positioning-Data",
+    AC_GERAN_POSITIONING_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "GERAN-Positioning-Info",
+    AC_GERAN_POSITIONING_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("GERAN-Vector", AC_GERAN_VECTOR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("GGSN-Address", AC_GGSN_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("GMLC-Address", AC_GMLC_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("GMLC-Address_S6", AC_GMLC_ADDRESS_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("GMLC-Number", AC_GMLC_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("GMLC-Restriction", AC_GMLC_RESTRICTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("GMM-Cause", AC_GMM_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "GPRS-Subscription-Data",
+    AC_GPRS_SUBSCRIPTION_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Granted-Service-Unit", AC_GRANTED_SERVICE_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Granted-Validity-Time", AC_GRANTED_VALIDITY_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "Group-Monitoring-Event-Report",
+    AC_GROUP_MONITORING_EVENT_REPORT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Group-Monitoring-Event-Report-Item",
+    AC_GROUP_MONITORING_EVENT_REPORT_ITEM,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Group-PLMN-Id", AC_GROUP_PLMN_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Group-Reporting-Guard-Timer",
+    AC_GROUP_REPORTING_GUARD_TIMER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Group-Service-Id", AC_GROUP_SERVICE_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Guaranteed-Bitrate-DL",
+    AC_GUARANTEED_BITRATE_DL,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Guaranteed-Bitrate-UL",
+    AC_GUARANTEED_BITRATE_UL,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("HeNB-BBF-FQDN", AC_HENB_BBF_FQDN, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("HeNB-Local-IP-Address", AC_HENB_LOCAL_IP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("HESSID", AC_HESSID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("High-User-Priority", AC_HIGH_USER_PRIORITY, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions",
+    AC_HOMOGENEOUS_SUPPORT_OF_IMS_VOICE_OVER_PS_SESSIONS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Horizontal-Accuracy",
+    AC_HORIZONTAL_ACCURACY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Host-IP-Address", AC_HOST_IP_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("HPLMN-ODB", AC_HPLMN_ODB, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("HSS-Cause", AC_HSS_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("HSS-ID", AC_HSS_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("ICMP-Code", AC_ICMP_CODE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("ICMP-Type", AC_ICMP_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("ICMP-Type-Number", AC_ICMP_TYPE_NUMBER, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("ICS-Indicator", AC_ICS_INDICATOR, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("IDA-Flags", AC_IDA_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Identity-Set", AC_IDENTITY_SET, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Identity-with-Emergency-Registration",
+    AC_IDENTITY_WITH_EMERGENCY_REGISTRATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Idle-Status-Indication",
+    AC_IDLE_STATUS_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Idle-Status-Indication_S6t",
+    AC_IDLE_STATUS_INDICATION_S6T,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Idle-Status-Timestamp", AC_IDLE_STATUS_TIMESTAMP, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("Idle-Timeout", AC_IDLE_TIMEOUT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("IDR-Flags", AC_IDR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("IM-Information", AC_IM_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("IMEI", AC_IMEI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("IMEI-Change", AC_IMEI_CHANGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Immediate-Response-Preferred",
+    AC_IMMEDIATE_RESPONSE_PREFERRED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "IMS-Application Reference-Identifier",
+    AC_IMS_APPLICATION_REFERENCE_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "IMS-Charging-Identifier",
+    AC_IMS_CHARGING_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "IMS-Communication-Service-Identifier",
+    AC_IMS_COMMUNICATION_SERVICE_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("IMS-Information", AC_IMS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "IMS-Voice-Over-PS-Sessions-Supported",
+    AC_IMS_VOICE_OVER_PS_SESSIONS_SUPPORTED,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("IMSI-Group-Id", AC_IMSI_GROUP_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("IMSI-List", AC_IMSI_LIST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "IMSI-Unauthenticated-Flag",
+    AC_IMSI_UNAUTHENTICATED_FLAG,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Inband-Security-Id", AC_INBAND_SECURITY_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Incoming-Trunk-Group-ID",
+    AC_INCOMING_TRUNK_GROUP_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Incremental-Cost", AC_INCREMENTAL_COST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Initial-CSeq-Sequence-Number",
+    AC_INITIAL_CSEQ_SEQUENCE_NUMBER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Initial-IMS-Charging-Identifier",
+    AC_INITIAL_IMS_CHARGING_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Integrity-Key", AC_INTEGRITY_KEY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Inter-Operator-Identifier",
+    AC_INTER_OPERATOR_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Interface-ID", AC_INTERFACE_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Interface-Port", AC_INTERFACE_PORT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Interface-Text", AC_INTERFACE_TEXT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Interface-Type", AC_INTERFACE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Interval-Time", AC_INTERVAL_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("IP-Address", AC_IP_ADDRESS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ADDRESS)
+  add("IP-Address-End", AC_IP_ADDRESS_END, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ADDRESS)
+  add("IP-Address-Mask", AC_IP_ADDRESS_MASK, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("IP-Address-Range", AC_IP_ADDRESS_RANGE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("IP-Address-Start", AC_IP_ADDRESS_START, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ADDRESS)
+  add("IP-Bit-Mask-Width", AC_IP_BIT_MASK_WIDTH, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "IP-CAN-Session-Charging-Scope",
+    AC_IP_CAN_SESSION_CHARGING_SCOPE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("IP-CAN-Type", AC_IP_CAN_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("IP-Domain-Id", AC_IP_DOMAIN_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("IP-Option", AC_IP_OPTION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("IP-Option-Type", AC_IP_OPTION_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("IP-Option-Value", AC_IP_OPTION_VALUE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "IP-Realm-Default-Indication",
+    AC_IP_REALM_DEFAULT_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("IP-SM-GW-Name", AC_IP_SM_GW_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add("IP-SM-GW-Number", AC_IP_SM_GW_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("IP-SM-GW-Realm", AC_IP_SM_GW_REALM, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add(
+    "IP-SM-GW-SM-Delivery-Outcome",
+    AC_IP_SM_GW_SM_DELIVERY_OUTCOME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Item-Number", AC_ITEM_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Job-Type", AC_JOB_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("KASME", AC_KASME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Kc", AC_KC, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Key", AC_KEY, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Key-Lifetime", AC_KEY_LIFETIME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Key-Name", AC_KEY_NAME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Key-SPI", AC_KEY_SPI, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Key-Type", AC_KEY_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Keying-Material", AC_KEYING_MATERIAL, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Last-UE-Activity-Time", AC_LAST_UE_ACTIVITY_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("LCS-APN", AC_LCS_APN, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "LCS-Capabilities-Sets",
+    AC_LCS_CAPABILITIES_SETS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "LCS-Client-Dialed-By-MS",
+    AC_LCS_CLIENT_DIALED_BY_MS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "LCS-Client-External-ID",
+    AC_LCS_CLIENT_EXTERNAL_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("LCS-Client-ID", AC_LCS_CLIENT_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("LCS-Client-Name", AC_LCS_CLIENT_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("LCS-Client-Type", AC_LCS_CLIENT_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("LCS-Codeword", AC_LCS_CODEWORD, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "LCS-Data-Coding-Scheme",
+    AC_LCS_DATA_CODING_SCHEME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("LCS-EPS-Client-Name", AC_LCS_EPS_CLIENT_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "LCS-Format-Indicator",
+    AC_LCS_FORMAT_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("LCS-Info", AC_LCS_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("LCS-Information", AC_LCS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("LCS-Name-String", AC_LCS_NAME_STRING, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("LCS-Priority", AC_LCS_PRIORITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("LCS-Privacy-Check", AC_LCS_PRIVACY_CHECK, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "LCS-Privacy-Check-Non-Session",
+    AC_LCS_PRIVACY_CHECK_NON_SESSION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "LCS-Privacy-Check-Session",
+    AC_LCS_PRIVACY_CHECK_SESSION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("LCS-PrivacyException", AC_LCS_PRIVACYEXCEPTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("LCS-QoS", AC_LCS_QOS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("LCS-QoS-Class", AC_LCS_QOS_CLASS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "LCS-Reference-Number",
+    AC_LCS_REFERENCE_NUMBER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("LCS-Requestor-ID", AC_LCS_REQUESTOR_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "LCS-Requestor-ID-String",
+    AC_LCS_REQUESTOR_ID_STRING,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("LCS-Requestor-Name", AC_LCS_REQUESTOR_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "LCS-Service-Type-ID",
+    AC_LCS_SERVICE_TYPE_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "LCS-Supported-GAD-Shapes",
+    AC_LCS_SUPPORTED_GAD_SHAPES,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("LIA-Flags", AC_LIA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Line-Identifier", AC_LINE_IDENTIFIER, AVP_FLAG_V_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("LIPA-Permission", AC_LIPA_PERMISSION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "List-Of-Measurements",
+    AC_LIST_OF_MEASUREMENTS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("LMSI", AC_LMSI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Local-Group-Id", AC_LOCAL_GROUP_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Local-GW-Inserted-Indication",
+    AC_LOCAL_GW_INSERTED_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Local-Sequence-Number",
+    AC_LOCAL_SEQUENCE_NUMBER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Local-Time-Zone", AC_LOCAL_TIME_ZONE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Local-Time-Zone-Indication",
+    AC_LOCAL_TIME_ZONE_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Location-Area-Identity",
+    AC_LOCATION_AREA_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Location-Estimate", AC_LOCATION_ESTIMATE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Location-Estimate-Type",
+    AC_LOCATION_ESTIMATE_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Location-Event", AC_LOCATION_EVENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Location-Information",
+    AC_LOCATION_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Location-Information-Configuration",
+    AC_LOCATION_INFORMATION_CONFIGURATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Location-Information-Configuration_S6",
+    AC_LOCATION_INFORMATION_CONFIGURATION_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Location-Type", AC_LOCATION_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Logging-Duration", AC_LOGGING_DURATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Logging-Interval", AC_LOGGING_INTERVAL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Logical-Access-ID", AC_LOGICAL_ACCESS_ID, AVP_FLAG_V, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-IP-Host", AC_LOGIN_IP_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-IPv6-Host", AC_LOGIN_IPV6_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-LAT-Group", AC_LOGIN_LAT_GROUP, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-LAT-Node", AC_LOGIN_LAT_NODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-LAT-Port", AC_LOGIN_LAT_PORT, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-LAT-Service", AC_LOGIN_LAT_SERVICE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Login-Service", AC_LOGIN_SERVICE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Login-TCP-Port", AC_LOGIN_TCP_PORT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Loose-Route-Indication",
+    AC_LOOSE_ROUTE_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Loss-Of-Connectivity-Reason",
+    AC_LOSS_OF_CONNECTIVITY_REASON,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Low-Balance-Indication",
+    AC_LOW_BALANCE_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Low-Priority-Indicator",
+    AC_LOW_PRIORITY_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Low-User-Priority", AC_LOW_USER_PRIORITY, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("LRA-Flags", AC_LRA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("LRR-Flags", AC_LRR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("MAC-Address", AC_MAC_ADDRESS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MAC-Address-Mask", AC_MAC_ADDRESS_MASK, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "MAC-Address-Mask-Pattern",
+    AC_MAC_ADDRESS_MASK_PATTERN,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Mandatory-Capability",
+    AC_MANDATORY_CAPABILITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Max-Requested-Bandwidth",
+    AC_MAX_REQUESTED_BANDWIDTH,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Max-Requested-Bandwidth-DL",
+    AC_MAX_REQUESTED_BANDWIDTH_DL,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Max-Requested-Bandwidth-UL",
+    AC_MAX_REQUESTED_BANDWIDTH_UL,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Max-Supported-Bandwidth-DL",
+    AC_MAX_SUPPORTED_BANDWIDTH_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Max-Supported-Bandwidth-UL",
+    AC_MAX_SUPPORTED_BANDWIDTH_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Maximum-Bandwidth", AC_MAXIMUM_BANDWIDTH, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Maximum-Detection-Time",
+    AC_MAXIMUM_DETECTION_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Maximum-Latency", AC_MAXIMUM_LATENCY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Maximum-Number-Accesses",
+    AC_MAXIMUM_NUMBER_ACCESSES,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Maximum-Number-of-Reports",
+    AC_MAXIMUM_NUMBER_OF_REPORTS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Maximum-Number-of-Reports_S6",
+    AC_MAXIMUM_NUMBER_OF_REPORTS_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Maximum-Response-Time",
+    AC_MAXIMUM_RESPONSE_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Maximum-Retransmission-Time",
+    AC_MAXIMUM_RETRANSMISSION_TIME,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add(
+    "Maximum-UE-Availability-Time",
+    AC_MAXIMUM_UE_AVAILABILITY_TIME,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add("Maximum-Wait-Time", AC_MAXIMUM_WAIT_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("MBMS GW-Address", AC_MBMS_GW_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add(
+    "MBMS-2G-3G-Indicator",
+    AC_MBMS_2G_3G_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("MBMS-Information", AC_MBMS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("MBMS-Service-Area", AC_MBMS_SERVICE_AREA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("MBMS-Service-Type", AC_MBMS_SERVICE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "MBMS-Session-Identity",
+    AC_MBMS_SESSION_IDENTITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "MBMS-User-Service-Type",
+    AC_MBMS_USER_SERVICE_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("MBSFN-Area", AC_MBSFN_AREA, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("MBSFN-Area-ID", AC_MBSFN_AREA_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("MCPTT-Identifier", AC_MCPTT_IDENTIFIER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("MDT-Allowed-PLMN-Id", AC_MDT_ALLOWED_PLMN_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("MDT-Configuration", AC_MDT_CONFIGURATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("MDT-User-Consent", AC_MDT_USER_CONSENT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Measurement-Period-LTE",
+    AC_MEASUREMENT_PERIOD_LTE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Measurement-Period-UMTS",
+    AC_MEASUREMENT_PERIOD_UMTS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Measurement-Quantity",
+    AC_MEASUREMENT_QUANTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Media-Component-Description",
+    AC_MEDIA_COMPONENT_DESCRIPTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Media-Component-Number",
+    AC_MEDIA_COMPONENT_NUMBER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Media-Component-Status",
+    AC_MEDIA_COMPONENT_STATUS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Media-Initiator-Flag",
+    AC_MEDIA_INITIATOR_FLAG,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Media-Initiator-Party",
+    AC_MEDIA_INITIATOR_PARTY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Media-Sub-Component", AC_MEDIA_SUB_COMPONENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Media-Type", AC_MEDIA_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Message-Body", AC_MESSAGE_BODY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Message-Class", AC_MESSAGE_CLASS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Message-ID", AC_MESSAGE_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Message-Size", AC_MESSAGE_SIZE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Message-Type", AC_MESSAGE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Metering-Method", AC_METERING_METHOD, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Min-Requested-Bandwidth-DL",
+    AC_MIN_REQUESTED_BANDWIDTH_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Min-Requested-Bandwidth-UL",
+    AC_MIN_REQUESTED_BANDWIDTH_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("MIP-Careof-Address", AC_MIP_CAREOF_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("MIP-FA-RK", AC_MIP_FA_RK, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("MIP-FA-RK-SPI", AC_MIP_FA_RK_SPI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "MIP-Home-Agent-Address",
+    AC_MIP_HOME_AGENT_ADDRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add("MIP-Home-Agent-Host", AC_MIP_HOME_AGENT_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP6-Agent-Info", AC_MIP6_AGENT_INFO, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP6-Feature-Vector", AC_MIP6_FEATURE_VECTOR, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add(
+    "MIP6-Home-Link-Prefix",
+    AC_MIP6_HOME_LINK_PREFIX,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("MM-Content-Type", AC_MM_CONTENT_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "MMBox-Storage-Requested",
+    AC_MMBOX_STORAGE_REQUESTED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "MME-Absent-User-Diagnostic-SM",
+    AC_MME_ABSENT_USER_DIAGNOSTIC_SM,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "MME-Location-Information",
+    AC_MME_LOCATION_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "MME-Location-Information-S6t",
+    AC_MME_LOCATION_INFORMATION_S6T,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("MME-Name", AC_MME_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add(
+    "MME-Number-for-MT-SMS",
+    AC_MME_NUMBER_FOR_MT_SMS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("MME-Realm", AC_MME_REALM, AVP_FLAG_V, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add(
+    "MME-SM-Delivery-Outcome",
+    AC_MME_SM_DELIVERY_OUTCOME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("MME-User-State", AC_MME_USER_STATE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("MMS-Information", AC_MMS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("MMTel-Information", AC_MMTEL_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "MMTel-SService-Type",
+    AC_MMTEL_SSERVICE_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("MO-LR", AC_MO_LR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Mobile-Node-Identifier",
+    AC_MOBILE_NODE_IDENTIFIER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Monitoring-Duration", AC_MONITORING_DURATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Monitoring-Duration_S6", AC_MONITORING_DURATION_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "Monitoring-Event-Config-Status",
+    AC_MONITORING_EVENT_CONFIG_STATUS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Config-Status_S6",
+    AC_MONITORING_EVENT_CONFIG_STATUS_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Configuration",
+    AC_MONITORING_EVENT_CONFIGURATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Configuration-T6",
+    AC_MONITORING_EVENT_CONFIGURATION_T6,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Configuration_S6",
+    AC_MONITORING_EVENT_CONFIGURATION_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Report",
+    AC_MONITORING_EVENT_REPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Report-Status",
+    AC_MONITORING_EVENT_REPORT_STATUS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Report-T6",
+    AC_MONITORING_EVENT_REPORT_T6,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Monitoring-Event-Report_S6",
+    AC_MONITORING_EVENT_REPORT_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Monitoring-Flags", AC_MONITORING_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Monitoring-Key", AC_MONITORING_KEY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Monitoring-Time", AC_MONITORING_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("Monitoring-Type", AC_MONITORING_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Monitoring-Type_S6", AC_MONITORING_TYPE_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "MONTE-Location-Type",
+    AC_MONTE_LOCATION_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Month-Of-Year-Mask", AC_MONTH_OF_YEAR_MASK, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("MPS-Identifier", AC_MPS_IDENTIFIER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("MPS-Priority", AC_MPS_PRIORITY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "MSC-Absent-User-Diagnostic-SM",
+    AC_MSC_ABSENT_USER_DIAGNOSTIC_SM,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("MSC-Number", AC_MSC_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "MSC-SM-Delivery-Outcome",
+    AC_MSC_SM_DELIVERY_OUTCOME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("MSISDN", AC_MSISDN, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "MTC-Error-Diagnostic",
+    AC_MTC_ERROR_DIAGNOSTIC,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Multi-Round-Time-Out",
+    AC_MULTI_ROUND_TIME_OUT,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Multiple-BBERF-Action",
+    AC_MULTIPLE_BBERF_ACTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Multiple-Registration-Indication",
+    AC_MULTIPLE_REGISTRATION_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Multiple-Services-Credit-Control",
+    AC_MULTIPLE_SERVICES_CREDIT_CONTROL,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "Multiple-Services-Credit-Control_32299",
+    AC_MULTIPLE_SERVICES_CREDIT_CONTROL_32299,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "Multiple-Services-Indicator",
+    AC_MULTIPLE_SERVICES_INDICATOR,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Mute-Notification", AC_MUTE_NOTIFICATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("MWD-Status", AC_MWD_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("NAS-Filter-Rule", AC_NAS_FILTER_RULE, AVP_FLAG_M, VENDOR_ID_NONE, DT_IP_FILTER_RULE)
+  add("NAS-Identifier", AC_NAS_IDENTIFIER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("NAS-IP-Address", AC_NAS_IP_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("NAS-IPv6-Address", AC_NAS_IPV6_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("NAS-Port", AC_NAS_PORT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("NAS-Port-Id", AC_NAS_PORT_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("NAS-Port-Type", AC_NAS_PORT_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("NBIFOM-Mode", AC_NBIFOM_MODE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("NBIFOM-Support", AC_NBIFOM_SUPPORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Negated", AC_NEGATED, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "NetLoc-Access-Support",
+    AC_NETLOC_ACCESS_SUPPORT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Netloc-Access-Support",
+    AC_NETLOC_ACCESS_SUPPORT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Network-Access-Mode", AC_NETWORK_ACCESS_MODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Network-Area-Info-List",
+    AC_NETWORK_AREA_INFO_LIST,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Network-Congestion-Area-Report",
+    AC_NETWORK_CONGESTION_AREA_REPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Network-Request-Support",
+    AC_NETWORK_REQUEST_SUPPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Next-Tariff", AC_NEXT_TARIFF, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "NIDD-Authorization-Request",
+    AC_NIDD_AUTHORIZATION_REQUEST,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "NIDD-Authorization-Response",
+    AC_NIDD_AUTHORIZATION_RESPONSE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "NIDD-Authorization-Update",
+    AC_NIDD_AUTHORIZATION_UPDATE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Node-Functionality", AC_NODE_FUNCTIONALITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Node-ID", AC_NODE_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Node-Type", AC_NODE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Non-3GPP-IP-Access", AC_NON_3GPP_IP_ACCESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Non-3GPP-IP-Access-APN",
+    AC_NON_3GPP_IP_ACCESS_APN,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Non-3GPP-User-Data", AC_NON_3GPP_USER_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Non-IP-Data", AC_NON_IP_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Non-IP-Data-Delivery-Mechanism",
+    AC_NON_IP_DATA_DELIVERY_MECHANISM,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Non-IP-PDN-Type-Indicator",
+    AC_NON_IP_PDN_TYPE_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("NOR-Flags", AC_NOR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Notification-To-UE-User",
+    AC_NOTIFICATION_TO_UE_USER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Ns-Request-Type", AC_NS_REQUEST_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Number-Of-Diversions",
+    AC_NUMBER_OF_DIVERSIONS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Messages-Sent",
+    AC_NUMBER_OF_MESSAGES_SENT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Messages-Successfully-Exploded",
+    AC_NUMBER_OF_MESSAGES_SUCCESSFULLY_EXPLODED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Messages-Successfully-Sent",
+    AC_NUMBER_OF_MESSAGES_SUCCESSFULLY_SENT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Participants",
+    AC_NUMBER_OF_PARTICIPANTS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Received-Talk-Bursts",
+    AC_NUMBER_OF_RECEIVED_TALK_BURSTS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Requested-Vectors",
+    AC_NUMBER_OF_REQUESTED_VECTORS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-Talk-Bursts",
+    AC_NUMBER_OF_TALK_BURSTS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Number-Of-UE-Per-Location-Configuration",
+    AC_NUMBER_OF_UE_PER_LOCATION_CONFIGURATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Number-Of-UE-Per-Location-Report",
+    AC_NUMBER_OF_UE_PER_LOCATION_REPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Number-Of-UEs", AC_NUMBER_OF_UES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Number-Portability-Routing-Information",
+    AC_NUMBER_PORTABILITY_ROUTING_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("OC-Feature-Vector", AC_OC_FEATURE_VECTOR, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("OC-OLR", AC_OC_OLR, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("OC-OLR_S6", AC_OC_OLR_S6, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "OC-Reduction-Percentage",
+    AC_OC_REDUCTION_PERCENTAGE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("OC-Report-Type", AC_OC_REPORT_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("OC-Sequence-Number", AC_OC_SEQUENCE_NUMBER, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add(
+    "OC-Supported-Features",
+    AC_OC_SUPPORTED_FEATURES,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "OC-Supported-Features_S6",
+    AC_OC_SUPPORTED_FEATURES_S6,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "OC-Validity-Duration",
+    AC_OC_VALIDITY_DURATION,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Occurrence-Info", AC_OCCURRENCE_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Offline", AC_OFFLINE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Offline-Charging", AC_OFFLINE_CHARGING, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("OFR-Flags", AC_OFR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Old-Reference-Number",
+    AC_OLD_REFERENCE_NUMBER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("OMC-Id", AC_OMC_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "One-Time-Notification",
+    AC_ONE_TIME_NOTIFICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Online", AC_ONLINE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Online-Charging-Flag",
+    AC_ONLINE_CHARGING_FLAG,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Operator-Determined-Barring",
+    AC_OPERATOR_DETERMINED_BARRING,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Operator-Name", AC_OPERATOR_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_64)
+  add(
+    "Optional-Capability",
+    AC_OPTIONAL_CAPABILITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Origin-AAA-Protocol", AC_ORIGIN_AAA_PROTOCOL, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Origin-Host", AC_ORIGIN_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Origin-Realm", AC_ORIGIN_REALM, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Origin-State-Id", AC_ORIGIN_STATE_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Originating-IOI", AC_ORIGINATING_IOI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Originating-Line-Info",
+    AC_ORIGINATING_LINE_INFO,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Originating-Request", AC_ORIGINATING_REQUEST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Originating-SIP-URI", AC_ORIGINATING_SIP_URI, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Origination-Time-Stamp",
+    AC_ORIGINATION_TIME_STAMP,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_64
+  )
+  add("Originator", AC_ORIGINATOR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Originator-Address", AC_ORIGINATOR_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Originator-Interface", AC_ORIGINATOR_INTERFACE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Originator-Received-Address",
+    AC_ORIGINATOR_RECEIVED_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Originator-SCCP-Address",
+    AC_ORIGINATOR_SCCP_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add("Outgoing-Session-Id", AC_OUTGOING_SESSION_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Outgoing-Trunk-Group-ID",
+    AC_OUTGOING_TRUNK_GROUP_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Packet-Filter-Content",
+    AC_PACKET_FILTER_CONTENT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_IP_FILTER_RULE
+  )
+  add(
+    "Packet-Filter-Identifier",
+    AC_PACKET_FILTER_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Packet-Filter-Information",
+    AC_PACKET_FILTER_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Packet-Filter-Operation",
+    AC_PACKET_FILTER_OPERATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Packet-Filter-Usage", AC_PACKET_FILTER_USAGE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Participant-Access-Priority",
+    AC_PARTICIPANT_ACCESS_PRIORITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Participant-Action-Type",
+    AC_PARTICIPANT_ACTION_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Participant-Group", AC_PARTICIPANT_GROUP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Participants-Involved",
+    AC_PARTICIPANTS_INVOLVED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Password-Retry", AC_PASSWORD_RETRY, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Path", AC_PATH, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Payload", AC_PAYLOAD, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("PCC-Rule-Status", AC_PCC_RULE_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PCRF-Address", AC_PCRF_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add(
+    "PCSCF-Restoration-Indication",
+    AC_PCSCF_RESTORATION_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("PDG-Address", AC_PDG_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("PDG-Charging-ID", AC_PDG_CHARGING_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "PDN-Connection-Charging-ID",
+    AC_PDN_CONNECTION_CHARGING_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "PDN-Connection-Continuity",
+    AC_PDN_CONNECTION_CONTINUITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("PDN-Connection-ID", AC_PDN_CONNECTION_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "PDN-GW-Allocation-Type",
+    AC_PDN_GW_ALLOCATION_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("PDN-Type", AC_PDN_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PDP-Address", AC_PDP_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add(
+    "PDP-Address-Prefix-Length",
+    AC_PDP_ADDRESS_PREFIX_LENGTH,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("PDP-Context", AC_PDP_CONTEXT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("PDP-Context-Type", AC_PDP_CONTEXT_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PDP-Type", AC_PDP_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Pending-Policy-Counter-Change-Time",
+    AC_PENDING_POLICY_COUNTER_CHANGE_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add(
+    "Pending-Policy-Counter-Information",
+    AC_PENDING_POLICY_COUNTER_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Periodic-Communication-Indicator",
+    AC_PERIODIC_COMMUNICATION_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Periodic-LDR-Information",
+    AC_PERIODIC_LDR_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Periodic-Location-Support-Indicator",
+    AC_PERIODIC_LOCATION_SUPPORT_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Periodic-Time", AC_PERIODIC_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Physical-Access-ID", AC_PHYSICAL_ACCESS_ID, AVP_FLAG_V, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("PLA-Flags", AC_PLA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("PLMN-Client", AC_PLMN_CLIENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PLMN-ID-List", AC_PLMN_ID_LIST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("PLMN-ID-Requested", AC_PLMN_ID_REQUESTED, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PLR-Flags", AC_PLR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "PoC-Change-Condition",
+    AC_POC_CHANGE_CONDITION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("PoC-Change-Time", AC_POC_CHANGE_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "PoC-Controlling-Address",
+    AC_POC_CONTROLLING_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("PoC-Event-Type", AC_POC_EVENT_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PoC-Group-Name", AC_POC_GROUP_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("PoC-Information", AC_POC_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("PoC-Server-Role", AC_POC_SERVER_ROLE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PoC-Session-ID", AC_POC_SESSION_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "PoC-Session-Initiation-Type",
+    AC_POC_SESSION_INITIATION_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("PoC-Session-Type", AC_POC_SESSION_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PoC-User-Role", AC_POC_USER_ROLE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("PoC-User-Role-Ids", AC_POC_USER_ROLE_IDS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "PoC-User-Role-info-Units",
+    AC_POC_USER_ROLE_INFO_UNITS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Policy-Counter-Identifier",
+    AC_POLICY_COUNTER_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Policy-Counter-Status",
+    AC_POLICY_COUNTER_STATUS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Policy-Counter-Status-Report",
+    AC_POLICY_COUNTER_STATUS_REPORT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Port", AC_PORT, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Port-End", AC_PORT_END, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Port-Limit", AC_PORT_LIMIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Port-Range", AC_PORT_RANGE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Port-Start", AC_PORT_START, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Positioning-Data", AC_POSITIONING_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Positioning-Method", AC_POSITIONING_METHOD, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("PPR-Address", AC_PPR_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("PPR-Flags", AC_PPR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("PRA-Install", AC_PRA_INSTALL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("PRA-Remove", AC_PRA_REMOVE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Pre-emption-Capability",
+    AC_PRE_EMPTION_CAPABILITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Pre-emption-Control-Info",
+    AC_PRE_EMPTION_CONTROL_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Pre-emption-Vulnerability",
+    AC_PRE_EMPTION_VULNERABILITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Pre-paging-Supported", AC_PRE_PAGING_SUPPORTED, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Precedence", AC_PRECEDENCE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Preferred-AoC-Currency",
+    AC_PREFERRED_AOC_CURRENCY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Preferred-Data-Mode", AC_PREFERRED_DATA_MODE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Presence-Reporting-Area-Elements-List",
+    AC_PRESENCE_REPORTING_AREA_ELEMENTS_LIST,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Presence-Reporting-Area-Identifier",
+    AC_PRESENCE_REPORTING_AREA_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Presence-Reporting-Area-Information",
+    AC_PRESENCE_REPORTING_AREA_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Presence-Reporting-Area-Status",
+    AC_PRESENCE_REPORTING_AREA_STATUS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Primary-Charging-Collection-Function-Name",
+    AC_PRIMARY_CHARGING_COLLECTION_FUNCTION_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_URI
+  )
+  add(
+    "Primary-Event-Charging-Function-Name",
+    AC_PRIMARY_EVENT_CHARGING_FUNCTION_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_URI
+  )
+  add(
+    "Primary-OCS-Charging-Function-Name",
+    AC_PRIMARY_OCS_CHARGING_FUNCTION_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_IDENTITY
+  )
+  add(
+    "Prioritized-List-Indicator",
+    AC_PRIORITIZED_LIST_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Priority", AC_PRIORITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Priority-Indication", AC_PRIORITY_INDICATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Priority-Level", AC_PRIORITY_LEVEL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Priority-Sharing-Indicator",
+    AC_PRIORITY_SHARING_INDICATOR,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Priviledged-Sender-Indication",
+    AC_PRIVILEDGED_SENDER_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Product-Name", AC_PRODUCT_NAME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Prompt", AC_PROMPT, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("ProSe-Permission", AC_PROSE_PERMISSION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "ProSe-Subscription-Data_S6",
+    AC_PROSE_SUBSCRIPTION_DATA_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Protocol", AC_PROTOCOL, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Proxy-Host", AC_PROXY_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Proxy-Info", AC_PROXY_INFO, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Proxy-State", AC_PROXY_STATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "PS-Append-Free-Format-Data",
+    AC_PS_APPEND_FREE_FORMAT_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "PS-Free-Format-Data",
+    AC_PS_FREE_FORMAT_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "PS-Furnish-Charging-Information",
+    AC_PS_FURNISH_CHARGING_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("PS-Information", AC_PS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "PS-to-CS-Session-Continuity",
+    AC_PS_TO_CS_SESSION_CONTINUITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Pseudonym-Indicator", AC_PSEUDONYM_INDICATOR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("PUA-Flags", AC_PUA_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Public-Identity", AC_PUBLIC_IDENTITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("PUR-Flags", AC_PUR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("QoS-Capability", AC_QOS_CAPABILITY, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "QoS-Class-Identifier",
+    AC_QOS_CLASS_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("QoS-Filter-Rule", AC_QOS_FILTER_RULE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_QoS_FILTER_RULE)
+  add("QoS-Information", AC_QOS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("QoS-Negotiation", AC_QOS_NEGOTIATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("QoS-Parameters", AC_QOS_PARAMETERS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Profile-Id", AC_QOS_PROFILE_ID, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("QoS-Profile-Template", AC_QOS_PROFILE_TEMPLATE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Resources", AC_QOS_RESOURCES, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Rule-Base-Name", AC_QOS_RULE_BASE_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("QoS-Rule-Definition", AC_QOS_RULE_DEFINITION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("QoS-Rule-Install", AC_QOS_RULE_INSTALL, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("QoS-Rule-Name", AC_QOS_RULE_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("QoS-Rule-Remove", AC_QOS_RULE_REMOVE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("QoS-Rule-Report", AC_QOS_RULE_REPORT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("QoS-Semantics", AC_QOS_SEMANTICS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("QoS-Subscribed", AC_QOS_SUBSCRIBED, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("QoS-Upgrade", AC_QOS_UPGRADE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Quota-Consumption-Time",
+    AC_QUOTA_CONSUMPTION_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Quota-Holding-Time", AC_QUOTA_HOLDING_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RAI", AC_RAI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "RAN-NAS-Release-Cause",
+    AC_RAN_NAS_RELEASE_CAUSE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("RAN-Rule-Support", AC_RAN_RULE_SUPPORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RANAP-Cause", AC_RANAP_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RAND", AC_RAND, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("RAR-Flags", AC_RAR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "RAT-Frequency-Selection-Priority-ID",
+    AC_RAT_FREQUENCY_SELECTION_PRIORITY_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("RAT-Type", AC_RAT_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("RAT-Type-850", AC_RAT_TYPE_850, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("RAT-Type-S6", AC_RAT_TYPE_S6, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Rate-Control-Max-Message-Size",
+    AC_RATE_CONTROL_MAX_MESSAGE_SIZE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Rate-Control-Max-Rate",
+    AC_RATE_CONTROL_MAX_RATE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Rate-Control-Time-Unit",
+    AC_RATE_CONTROL_TIME_UNIT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Rate-Element", AC_RATE_ELEMENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Rating-Group", AC_RATING_GROUP, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("RCAF-Id", AC_RCAF_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add("RDR-Flags", AC_RDR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RDS-Indicator", AC_RDS_INDICATOR, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Re-Auth-Request-Type", AC_RE_AUTH_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Re-Synchronization-Info",
+    AC_RE_SYNCHRONIZATION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Reachability-Information",
+    AC_REACHABILITY_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Reachability-Information_S6",
+    AC_REACHABILITY_INFORMATION_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Reachability-Type", AC_REACHABILITY_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Reachability-Type_S6",
+    AC_REACHABILITY_TYPE_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Read-Reply-Report-Requested",
+    AC_READ_REPLY_REPORT_REQUESTED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Real-Time-Tariff-Information",
+    AC_REAL_TIME_TARIFF_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Reason-Code", AC_REASON_CODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Reason-Info", AC_REASON_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Received-Talk-Burst-Time",
+    AC_RECEIVED_TALK_BURST_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Received-Talk-Burst-Volume",
+    AC_RECEIVED_TALK_BURST_VOLUME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Recipient-Address", AC_RECIPIENT_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Recipient-Info", AC_RECIPIENT_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Recipient-Received-Address",
+    AC_RECIPIENT_RECEIVED_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Recipient-SCCP-Address",
+    AC_RECIPIENT_SCCP_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add("Record-Route", AC_RECORD_ROUTE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Redirect-Address-Type",
+    AC_REDIRECT_ADDRESS_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Redirect-Host", AC_REDIRECT_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_URI)
+  add("Redirect-Host-Usage", AC_REDIRECT_HOST_USAGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Redirect-Information", AC_REDIRECT_INFORMATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Redirect-Max-Cache-Time",
+    AC_REDIRECT_MAX_CACHE_TIME,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Redirect-Server", AC_REDIRECT_SERVER, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Redirect-Server-Address",
+    AC_REDIRECT_SERVER_ADDRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Redirect-Support", AC_REDIRECT_SUPPORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Reference-Id", AC_REFERENCE_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Reference-ID-Validity-Time",
+    AC_REFERENCE_ID_VALIDITY_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add(
+    "Reference-ID-Validity-Time_S6",
+    AC_REFERENCE_ID_VALIDITY_TIME_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add("Reference-Number", AC_REFERENCE_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Refund-Information", AC_REFUND_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Regional-Subscription-Zone-Code",
+    AC_REGIONAL_SUBSCRIPTION_ZONE_CODE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Relay-Node-Indicator", AC_RELAY_NODE_INDICATOR, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Remaining-Balance", AC_REMAINING_BALANCE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Removal-Of-Access", AC_REMOVAL_OF_ACCESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Reply-Applic-ID", AC_REPLY_APPLIC_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Reply-Message", AC_REPLY_MESSAGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Reply-Path-Requested",
+    AC_REPLY_PATH_REQUESTED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Report-Amount", AC_REPORT_AMOUNT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Report-Interval", AC_REPORT_INTERVAL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Reporting-Amount", AC_REPORTING_AMOUNT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Reporting-Interval", AC_REPORTING_INTERVAL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Reporting-Level", AC_REPORTING_LEVEL, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Reporting-PLMN-List", AC_REPORTING_PLMN_LIST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Reporting-Reason", AC_REPORTING_REASON, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Reporting-Restriction",
+    AC_REPORTING_RESTRICTION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Reporting-Trigger", AC_REPORTING_TRIGGER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Repository-Data-ID", AC_REPOSITORY_DATA_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Request-Status", AC_REQUEST_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Request-Type", AC_REQUEST_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Requested-Action", AC_REQUESTED_ACTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Requested-Domain", AC_REQUESTED_DOMAIN, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Requested-EUTRAN-Authentication-Info",
+    AC_REQUESTED_EUTRAN_AUTHENTICATION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Requested-Nodes", AC_REQUESTED_NODES, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Requested-Party-Address",
+    AC_REQUESTED_PARTY_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Requested-Retransmission-Time",
+    AC_REQUESTED_RETRANSMISSION_TIME,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_TIME
+  )
+  add(
+    "Requested-Service-Unit",
+    AC_REQUESTED_SERVICE_UNIT,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "Requested-UTRAN-GERAN-Authentication-Info",
+    AC_REQUESTED_UTRAN_GERAN_AUTHENTICATION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Requested-Validity-Time", AC_REQUESTED_VALIDITY_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("Required-Access-Info", AC_REQUIRED_ACCESS_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Required-MBMS-Bearer-Capabilities",
+    AC_REQUIRED_MBMS_BEARER_CAPABILITIES,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Reservation-Priority", AC_RESERVATION_PRIORITY, AVP_FLAG_V, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Reset-ID", AC_RESET_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Resource-Allocation-Notification",
+    AC_RESOURCE_ALLOCATION_NOTIFICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Resource-Release-Notification",
+    AC_RESOURCE_RELEASE_NOTIFICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Response-Time", AC_RESPONSE_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Restoration-Info", AC_RESTORATION_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Restoration-Priority",
+    AC_RESTORATION_PRIORITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Restricted-PLMN-List", AC_RESTRICTED_PLMN_LIST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Restriction-Filter-Rule",
+    AC_RESTRICTION_FILTER_RULE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_IP_FILTER_RULE
+  )
+  /*
+    The Result-Code AVP (AVP Code 268) is of type Unsigned32 and indicates whether a particular
+    request was completed successfully or whether an error occurred. All Diameter answer messages
+    defined in IETF applications MUST include one Result-Code AVP. A non-successful Result-Code
+    AVP (one containing a non 2xxx value other than DIAMETER_REDIRECT_INDICATION) MUST include
+    the Error-Reporting-Host AVP if the host setting the Result-Code AVP is different from the
+    identity encoded in the Origin-Host AVP.
+         <p>The Result-Code data field contains an IANA-managed 32-bit address space representing
+    errors. Diameter provides the following classes of errors, all identified by the thousands
+    digit in the decimal notation:
+         <ul>
+      <li>1xxx (Informational)
+      <li>2xxx (Success)
+      <li>3xxx (protocol Errors)
+      <li>4xxx (Transient Failures)
+      <li>5xxx (Permanent Failure)
+    </ul>
+    */
+  add("Result-Code", AC_RESULT_CODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Retry-Interval", AC_RETRY_INTERVAL, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Revalidation-Time", AC_REVALIDATION_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("RIA-Flags", AC_RIA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RIR-Flags", AC_RIR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Roaming-Information",
+    AC_ROAMING_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Roaming-Restricted-Due-To-Unsupported-Feature",
+    AC_ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Role-Of-Node", AC_ROLE_OF_NODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Route-Record", AC_ROUTE_RECORD, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add(
+    "Routing-Area-Identity",
+    AC_ROUTING_AREA_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Routing-Filter", AC_ROUTING_FILTER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Routing-IP-Address", AC_ROUTING_IP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("Routing-Policy", AC_ROUTING_POLICY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_IP_FILTER_RULE)
+  add(
+    "Routing-Rule-Definition",
+    AC_ROUTING_RULE_DEFINITION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Routing-Rule-Failure-Code",
+    AC_ROUTING_RULE_FAILURE_CODE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Routing-Rule-Identifier",
+    AC_ROUTING_RULE_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Routing-Rule-Install", AC_ROUTING_RULE_INSTALL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Routing-Rule-Remove", AC_ROUTING_RULE_REMOVE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Routing-Rule-Report", AC_ROUTING_RULE_REPORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("RR-Bandwidth", AC_RR_BANDWIDTH, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RRC-Cause-Counter", AC_RRC_CAUSE_COUNTER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("RRC-Counter-Timestamp", AC_RRC_COUNTER_TIMESTAMP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("RS-Bandwidth", AC_RS_BANDWIDTH, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("RUCI-Action", AC_RUCI_ACTION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Rule-Activation-Time", AC_RULE_ACTIVATION_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Rule-Deactivation-Time", AC_RULE_DEACTIVATION_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Rule-Failure-Code", AC_RULE_FAILURE_CODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Rx-Request-Type", AC_RX_REQUEST_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("S-VID-End", AC_S_VID_END, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("S-VID-Start", AC_S_VID_START, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("S1AP-Cause", AC_S1AP_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("S6t-HSS-Cause", AC_S6T_HSS_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SAR-Flags", AC_SAR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SC-Address", AC_SC_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Scale-Factor", AC_SCALE_FACTOR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("SCEF-ID", AC_SCEF_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add("SCEF-ID_S6", AC_SCEF_ID_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add("SCEF-Realm", AC_SCEF_REALM, AVP_FLAG_V, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add("SCEF-Reference-ID", AC_SCEF_REFERENCE_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "SCEF-Reference-ID-for-Deletion",
+    AC_SCEF_REFERENCE_ID_FOR_DELETION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "SCEF-Reference-ID-for-Deletion_S6",
+    AC_SCEF_REFERENCE_ID_FOR_DELETION_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "SCEF-Reference-ID_S6",
+    AC_SCEF_REFERENCE_ID_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SCEF-Wait-Time", AC_SCEF_WAIT_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "Scheduled-Communication-Time",
+    AC_SCHEDULED_COMMUNICATION_TIME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("SCS-Address", AC_SCS_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("SCS-AS-Address", AC_SCS_AS_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("SCS-Identity", AC_SCS_IDENTITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SCS-Realm", AC_SCS_REALM, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add(
+    "SCSCF-Restoration-Info",
+    AC_SCSCF_RESTORATION_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("SDP-Answer-Timestamp", AC_SDP_ANSWER_TIMESTAMP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("SDP-Media-Component", AC_SDP_MEDIA_COMPONENT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "SDP-Media-Description",
+    AC_SDP_MEDIA_DESCRIPTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("SDP-Media-Name", AC_SDP_MEDIA_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("SDP-Offer-Timestamp", AC_SDP_OFFER_TIMESTAMP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "SDP-Session-Description",
+    AC_SDP_SESSION_DESCRIPTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("SDP-TimeStamps", AC_SDP_TIMESTAMPS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("SDP-Type", AC_SDP_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Secondary-Charging-Collection-Function-Name",
+    AC_SECONDARY_CHARGING_COLLECTION_FUNCTION_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_URI
+  )
+  add(
+    "Secondary-Event-Charging-Function-Name",
+    AC_SECONDARY_EVENT_CHARGING_FUNCTION_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_URI
+  )
+  add(
+    "Secondary-OCS-Charging-Function-Name",
+    AC_SECONDARY_OCS_CHARGING_FUNCTION_NAME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_IDENTITY
+  )
+  add(
+    "Security-Parameter-Index",
+    AC_SECURITY_PARAMETER_INDEX,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Send-Data-Indication", AC_SEND_DATA_INDICATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Sequence-Number", AC_SEQUENCE_NUMBER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Served-Party-IP-Address",
+    AC_SERVED_PARTY_IP_ADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add(
+    "Server-Assignment-Type",
+    AC_SERVER_ASSIGNMENT_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Server-Capabilities", AC_SERVER_CAPABILITIES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Server-Name", AC_SERVER_NAME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Service-Area-Identity",
+    AC_SERVICE_AREA_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Service-Authorization-Info",
+    AC_SERVICE_AUTHORIZATION_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Service-Context-Id", AC_SERVICE_CONTEXT_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Service-Data", AC_SERVICE_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Service-Data-Container",
+    AC_SERVICE_DATA_CONTAINER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Service-Generic-Information",
+    AC_SERVICE_GENERIC_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Service-ID", AC_SERVICE_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Service-ID-S6m", AC_SERVICE_ID_S6M, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Service-Identifier", AC_SERVICE_IDENTIFIER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Service-Indication", AC_SERVICE_INDICATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Service-Info-Status", AC_SERVICE_INFO_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Service-Information", AC_SERVICE_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Service-Mode", AC_SERVICE_MODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Service-Parameter-Info",
+    AC_SERVICE_PARAMETER_INFO,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "Service-Parameter-Type",
+    AC_SERVICE_PARAMETER_TYPE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Service-Parameter-Value",
+    AC_SERVICE_PARAMETER_VALUE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Service-Parameters", AC_SERVICE_PARAMETERS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Service-Report", AC_SERVICE_REPORT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Service-Result", AC_SERVICE_RESULT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Service-Result-Code",
+    AC_SERVICE_RESULT_CODE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Service-Selection", AC_SERVICE_SELECTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Service-Specific-Data",
+    AC_SERVICE_SPECIFIC_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "Service-Specific-Info",
+    AC_SERVICE_SPECIFIC_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Service-Specific-Type",
+    AC_SERVICE_SPECIFIC_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Service-Type", AC_SERVICE_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Service-Type_32.299",
+    AC_SERVICE_TYPE_32_299,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Service-Type_S6", AC_SERVICE_TYPE_S6, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Service-URN", AC_SERVICE_URN, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "ServiceTypeIdentity",
+    AC_SERVICETYPEIDENTITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Serving-Node", AC_SERVING_NODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Serving-Node-Indication",
+    AC_SERVING_NODE_INDICATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Serving-Node-T4", AC_SERVING_NODE_T4, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Serving-Node-Type", AC_SERVING_NODE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Serving-PLMN-Rate-Control",
+    AC_SERVING_PLMN_RATE_CONTROL,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Session-Binding", AC_SESSION_BINDING, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Session-Id", AC_SESSION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Session-Linking-Indicator",
+    AC_SESSION_LINKING_INDICATOR,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Session-Priority", AC_SESSION_PRIORITY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Session-Release-Cause",
+    AC_SESSION_RELEASE_CAUSE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Session-Request-Type",
+    AC_SESSION_REQUEST_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Session-Server-Failover",
+    AC_SESSION_SERVER_FAILOVER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Session-Timeout", AC_SESSION_TIMEOUT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "SGi-PtP-Tunnelling-Method",
+    AC_SGI_PTP_TUNNELLING_METHOD,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("SGs-MME-Identity", AC_SGS_MME_IDENTITY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "SGSN-Absent-User-Diagnostic-SM",
+    AC_SGSN_ABSENT_USER_DIAGNOSTIC_SM,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SGSN-Address", AC_SGSN_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add(
+    "SGSN-Location-Information",
+    AC_SGSN_LOCATION_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "SGSN-Location-Information-S6t",
+    AC_SGSN_LOCATION_INFORMATION_S6T,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("SGSN-Name", AC_SGSN_NAME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add("SGSN-Number", AC_SGSN_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SGSN-Realm", AC_SGSN_REALM, AVP_FLAG_V, VENDOR_ID_3GPP, DT_DIAMETER_IDENTITY)
+  add(
+    "SGSN-SM-Delivery-Outcome",
+    AC_SGSN_SM_DELIVERY_OUTCOME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("SGSN-User-State", AC_SGSN_USER_STATE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("SGW-Address", AC_SGW_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("SGW-Change", AC_SGW_CHANGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Sharing-Key-DL", AC_SHARING_KEY_DL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Sharing-Key-UL", AC_SHARING_KEY_UL, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Short-Network-Name", AC_SHORT_NETWORK_NAME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SIP-Auth-Data-Item", AC_SIP_AUTH_DATA_ITEM, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "SIP-Auth-Data-Item Wx",
+    AC_SIP_AUTH_DATA_ITEM_WX,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("SIP-Authenticate", AC_SIP_AUTHENTICATE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "SIP-Authentication-Context",
+    AC_SIP_AUTHENTICATION_CONTEXT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "SIP-Authentication-Scheme",
+    AC_SIP_AUTHENTICATION_SCHEME,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("SIP-Authorization", AC_SIP_AUTHORIZATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "SIP-Digest-Authenticate",
+    AC_SIP_DIGEST_AUTHENTICATE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "SIP-Forking-Indication",
+    AC_SIP_FORKING_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("SIP-Item-Number", AC_SIP_ITEM_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SIP-Method", AC_SIP_METHOD, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "SIP-Number-Auth-Items",
+    AC_SIP_NUMBER_AUTH_ITEMS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SIP-Request-Timestamp", AC_SIP_REQUEST_TIMESTAMP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "SIP-Request-Timestamp-Fraction",
+    AC_SIP_REQUEST_TIMESTAMP_FRACTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SIP-Response-Timestamp", AC_SIP_RESPONSE_TIMESTAMP, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "SIP-Response-Timestamp-Fraction",
+    AC_SIP_RESPONSE_TIMESTAMP_FRACTION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "SIPTO-Local-Network-Permission",
+    AC_SIPTO_LOCAL_NETWORK_PERMISSION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SIPTO-Permission", AC_SIPTO_PERMISSION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SIR-Flags", AC_SIR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SL-Request-Type", AC_SL_REQUEST_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SLg-Location-Type", AC_SLG_LOCATION_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SM-Back-Off-Timer", AC_SM_BACK_OFF_TIMER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SM-Cause", AC_SM_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SM-Delivery-Cause", AC_SM_DELIVERY_CAUSE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "SM-Delivery-Failure-Cause",
+    AC_SM_DELIVERY_FAILURE_CAUSE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "SM-Delivery-Not-Intended",
+    AC_SM_DELIVERY_NOT_INTENDED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("SM-Delivery-Outcome", AC_SM_DELIVERY_OUTCOME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "SM-Delivery-Outcome-T4",
+    AC_SM_DELIVERY_OUTCOME_T4,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("SM-Delivery-Start-Time", AC_SM_DELIVERY_START_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("SM-Delivery-Timer", AC_SM_DELIVERY_TIMER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SM-Diagnostic-Info", AC_SM_DIAGNOSTIC_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SM-Discharge-Time", AC_SM_DISCHARGE_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "SM-Enumerated-Delivery-Failure-Cause",
+    AC_SM_ENUMERATED_DELIVERY_FAILURE_CAUSE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("SM-Message-Type", AC_SM_MESSAGE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SM-Protocol-ID", AC_SM_PROTOCOL_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SM-RP-MTI", AC_SM_RP_MTI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SM-RP-SMEA", AC_SM_RP_SMEA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SM-RP-UI", AC_SM_RP_UI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SM-Service-Type", AC_SM_SERVICE_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SM-Status", AC_SM_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "SM-User-Data-Header",
+    AC_SM_USER_DATA_HEADER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "SMS-Application-Port-ID",
+    AC_SMS_APPLICATION_PORT_ID,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SMS-GMSC-Address", AC_SMS_GMSC_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "SMS-GMSC-Alert-Event",
+    AC_SMS_GMSC_ALERT_EVENT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("SMS-Information", AC_SMS_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("SMS-Node", AC_SMS_NODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SMS-Register-Request", AC_SMS_REGISTER_REQUEST, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SMSC-Address", AC_SMSC_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("SMSMI-Correlation-ID", AC_SMSMI_CORRELATION_ID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("SN-Request-Type", AC_SN_REQUEST_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Software-Version", AC_SOFTWARE_VERSION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Specific-Action", AC_SPECIFIC_ACTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Specific-APN-Info", AC_SPECIFIC_APN_INFO, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Sponsor-Identity", AC_SPONSOR_IDENTITY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Sponsored-Connectivity-Data",
+    AC_SPONSORED_CONNECTIVITY_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Sponsoring-Action", AC_SPONSORING_ACTION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("SRES", AC_SRES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SRR-Flags", AC_SRR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("SS-Code", AC_SS_CODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SS-Status", AC_SS_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("SSID", AC_SSID, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Start-Time", AC_START_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("State", AC_STATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "Stationary-Indication",
+    AC_STATIONARY_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("STN-SR", AC_STN_SR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Stop-Time", AC_STOP_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Submission-Time", AC_SUBMISSION_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Subs-Req-Type", AC_SUBS_REQ_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Subscribed-Periodic-RAU-TAU-Timer",
+    AC_SUBSCRIBED_PERIODIC_RAU_TAU_TIMER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Subscribed-VSRVCC", AC_SUBSCRIBED_VSRVCC, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Subscriber-Role", AC_SUBSCRIBER_ROLE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Subscriber-Status", AC_SUBSCRIBER_STATUS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Subscription-Data", AC_SUBSCRIPTION_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Subscription-Data-Deletion",
+    AC_SUBSCRIPTION_DATA_DELETION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Subscription-Data-Flags",
+    AC_SUBSCRIPTION_DATA_FLAGS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Subscription-ID", AC_SUBSCRIPTION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Subscription-ID-Data", AC_SUBSCRIPTION_ID_DATA, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Subscription-ID-Type", AC_SUBSCRIPTION_ID_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Subscription-Info", AC_SUBSCRIPTION_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Subsession-Decision-Info",
+    AC_SUBSESSION_DECISION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Subsession-Enforcement-Info",
+    AC_SUBSESSION_ENFORCEMENT_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Subsession-Id", AC_SUBSESSION_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Subsession-Operation",
+    AC_SUBSESSION_OPERATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Suggested-Network-Configuration",
+    AC_SUGGESTED_NETWORK_CONFIGURATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Supplementary-Service",
+    AC_SUPPLEMENTARY_SERVICE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Supported-Applications",
+    AC_SUPPORTED_APPLICATIONS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Supported-Features", AC_SUPPORTED_FEATURES, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Supported-Features_S6a",
+    AC_SUPPORTED_FEATURES_S6A,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Supported-Monitoring-Events",
+    AC_SUPPORTED_MONITORING_EVENTS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Supported-Monitoring-Events_S6",
+    AC_SUPPORTED_MONITORING_EVENTS_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_64
+  )
+  add("Supported-Services", AC_SUPPORTED_SERVICES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Supported-Services_S6", AC_SUPPORTED_SERVICES_S6, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Supported-Vendor-Id", AC_SUPPORTED_VENDOR_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("T4-Data", AC_T4_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("T4-Parameters", AC_T4_PARAMETERS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Talk-Burst-Exchange", AC_TALK_BURST_EXCHANGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Talk-Burst-Time", AC_TALK_BURST_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Talk-Burst-Volume", AC_TALK_BURST_VOLUME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Tariff-Change-Usage", AC_TARIFF_CHANGE_USAGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Tariff-Information", AC_TARIFF_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Tariff-Time-Change", AC_TARIFF_TIME_CHANGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_TIME)
+  add("Tariff-XML", AC_TARIFF_XML, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("TCP-Flag-Type", AC_TCP_FLAG_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("TCP-Flags", AC_TCP_FLAGS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("TCP-Option", AC_TCP_OPTION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("TCP-Option-Type", AC_TCP_OPTION_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("TCP-Option-Value", AC_TCP_OPTION_VALUE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("TCP-Source-Port", AC_TCP_SOURCE_PORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("TDA-Flags", AC_TDA_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "TDF-Application-Identifier",
+    AC_TDF_APPLICATION_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "TDF-Application-Instance-Identifier",
+    AC_TDF_APPLICATION_INSTANCE_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "TDF-Destination-Host",
+    AC_TDF_DESTINATION_HOST,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_IDENTITY
+  )
+  add(
+    "TDF-Destination-Realm",
+    AC_TDF_DESTINATION_REALM,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_DIAMETER_IDENTITY
+  )
+  add("TDF-Information", AC_TDF_INFORMATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("TDF-IP-Address", AC_TDF_IP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("Teleservice-List", AC_TELESERVICE_LIST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Terminal-Information", AC_TERMINAL_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Terminal-Information-T6",
+    AC_TERMINAL_INFORMATION_T6,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Terminating-IOI", AC_TERMINATING_IOI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Termination-Cause", AC_TERMINATION_CAUSE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Termination-Cause-SLg",
+    AC_TERMINATION_CAUSE_SLG,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("TFR-Flags", AC_TFR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("TFT-Filter", AC_TFT_FILTER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_IP_FILTER_RULE)
+  add(
+    "TFT-Packet-Filter-Information",
+    AC_TFT_PACKET_FILTER_INFORMATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Time-First-Usage", AC_TIME_FIRST_USAGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Time-Last-Usage", AC_TIME_LAST_USAGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "Time-Of-Day-Condition",
+    AC_TIME_OF_DAY_CONDITION,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("Time-Of-Day-End", AC_TIME_OF_DAY_END, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Time-Of-Day-Start", AC_TIME_OF_DAY_START, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Time-Quota-Mechanism", AC_TIME_QUOTA_MECHANISM, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Time-Quota-Threshold",
+    AC_TIME_QUOTA_THRESHOLD,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Time-Quota-Type", AC_TIME_QUOTA_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Time-Stamps", AC_TIME_STAMPS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Time-Usage", AC_TIME_USAGE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Time-Window", AC_TIME_WINDOW, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Time-Zone", AC_TIME_ZONE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Timezone-Flag", AC_TIMEZONE_FLAG, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Timezone-Offset", AC_TIMEZONE_OFFSET, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("TMGI", AC_TMGI, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("To-SIP-Header", AC_TO_SIP_HEADER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("To-Spec", AC_TO_SPEC, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Token-Text", AC_TOKEN_TEXT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("ToS-Traffic-Class", AC_TOS_TRAFFIC_CLASS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Total-Number-Of-Messages-Exploded",
+    AC_TOTAL_NUMBER_OF_MESSAGES_EXPLODED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Total-Number-Of-Messages-Sent",
+    AC_TOTAL_NUMBER_OF_MESSAGES_SENT,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Trace-Collection-Entity",
+    AC_TRACE_COLLECTION_ENTITY,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add("Trace-Data", AC_TRACE_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Trace-Depth", AC_TRACE_DEPTH, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Trace-Event-List", AC_TRACE_EVENT_LIST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Trace-Info", AC_TRACE_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Trace-Interface-List",
+    AC_TRACE_INTERFACE_LIST,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Trace-NE-Type-List", AC_TRACE_NE_TYPE_LIST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Trace-Reference", AC_TRACE_REFERENCE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Tracking-Area-Identity",
+    AC_TRACKING_AREA_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Traffic-Data-Volumes", AC_TRAFFIC_DATA_VOLUMES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Traffic-Steering-Policy-Identifier-DL",
+    AC_TRAFFIC_STEERING_POLICY_IDENTIFIER_DL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Traffic-Steering-Policy-Identifier-UL",
+    AC_TRAFFIC_STEERING_POLICY_IDENTIFIER_UL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Transcoder-Inserted-Indication",
+    AC_TRANSCODER_INSERTED_INDICATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Transfer-End-Time", AC_TRANSFER_END_TIME, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_TIME)
+  add("Transfer-Policy", AC_TRANSFER_POLICY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Transfer-Policy-Id", AC_TRANSFER_POLICY_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Transfer-Request-Type",
+    AC_TRANSFER_REQUEST_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Transfer-Start-Time", AC_TRANSFER_START_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add(
+    "Transport-Access-Type",
+    AC_TRANSPORT_ACCESS_TYPE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Treatment-Action", AC_TREATMENT_ACTION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Trigger", AC_TRIGGER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Trigger-Action", AC_TRIGGER_ACTION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Trigger-Data", AC_TRIGGER_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Trigger-Type", AC_TRIGGER_TYPE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Trunk-Group-ID", AC_TRUNK_GROUP_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("TS-Code", AC_TS_CODE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "Tunnel-Assignment-Id",
+    AC_TUNNEL_ASSIGNMENT_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Tunnel-Client-Auth-Id",
+    AC_TUNNEL_CLIENT_AUTH_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add(
+    "Tunnel-Client-Endpoint",
+    AC_TUNNEL_CLIENT_ENDPOINT,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add(
+    "Tunnel-Header-Filter",
+    AC_TUNNEL_HEADER_FILTER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_IP_FILTER_RULE
+  )
+  add(
+    "Tunnel-Header-Length",
+    AC_TUNNEL_HEADER_LENGTH,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Tunnel-Information", AC_TUNNEL_INFORMATION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Tunnel-Medium-Type", AC_TUNNEL_MEDIUM_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Tunnel-Password", AC_TUNNEL_PASSWORD, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Tunnel-Preference", AC_TUNNEL_PREFERENCE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Tunnel-Private-Group-Id",
+    AC_TUNNEL_PRIVATE_GROUP_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Tunnel-Server-Auth-Id",
+    AC_TUNNEL_SERVER_AUTH_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add(
+    "Tunnel-Server-Endpoint",
+    AC_TUNNEL_SERVER_ENDPOINT,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Tunnel-Type", AC_TUNNEL_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Tunneling", AC_TUNNELING, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("TWAG-Address", AC_TWAG_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("TWAG-CP-Address", AC_TWAG_CP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("TWAG-UP-Address", AC_TWAG_UP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("TWAN-Access-Info", AC_TWAN_ACCESS_INFO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "TWAN-Connection-Mode",
+    AC_TWAN_CONNECTION_MODE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "TWAN-Connectivity-Parameters",
+    AC_TWAN_CONNECTIVITY_PARAMETERS,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "TWAN-Default-APN-Context-Id",
+    AC_TWAN_DEFAULT_APN_CONTEXT_ID,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("TWAN-Identifier", AC_TWAN_IDENTIFIER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("TWAN-PCO", AC_TWAN_PCO, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "TWAN-S2a-Failure-Cause",
+    AC_TWAN_S2A_FAILURE_CAUSE,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "TWAN-User-Location-Info",
+    AC_TWAN_USER_LOCATION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("Type-Number", AC_TYPE_NUMBER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Type-Of-External-Identifier",
+    AC_TYPE_OF_EXTERNAL_IDENTIFIER,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("UAR-Flags", AC_UAR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("UDP-Source-Port", AC_UDP_SOURCE_PORT, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("UDR-Flags", AC_UDR_FLAGS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("UE-Count", AC_UE_COUNT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("UE-Local-IP-Address", AC_UE_LOCAL_IP_ADDRESS, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("UE-PC5-AMBR", AC_UE_PC5_AMBR, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "UE-Reachability-Configuration",
+    AC_UE_REACHABILITY_CONFIGURATION,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "UE-Reachability-Configuration_S6",
+    AC_UE_REACHABILITY_CONFIGURATION_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("UE-SRVCC-Capability", AC_UE_SRVCC_CAPABILITY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("UE-Usage-Type", AC_UE_USAGE_TYPE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("ULA-Flags", AC_ULA_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("ULR-Flags", AC_ULR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "UNI-PDU-CP-Only-Flag",
+    AC_UNI_PDU_CP_ONLY_FLAG,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("Unit-Cost", AC_UNIT_COST, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "Unit-Quota-Threshold",
+    AC_UNIT_QUOTA_THRESHOLD,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("Unit-Value", AC_UNIT_VALUE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Unused-Quota-Timer", AC_UNUSED_QUOTA_TIMER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Uplink-Rate-Limit", AC_UPLINK_RATE_LIMIT, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "Usage-Monitoring-Information",
+    AC_USAGE_MONITORING_INFORMATION,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "Usage-Monitoring-Level",
+    AC_USAGE_MONITORING_LEVEL,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Usage-Monitoring-Report",
+    AC_USAGE_MONITORING_REPORT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Usage-Monitoring-Support",
+    AC_USAGE_MONITORING_SUPPORT,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add(
+    "Use-Assigned-Address",
+    AC_USE_ASSIGNED_ADDRESS,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Used-Service-Unit", AC_USED_SERVICE_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Used-Service-Unit_32299",
+    AC_USED_SERVICE_UNIT_32299,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "User-Authorization-Type",
+    AC_USER_AUTHORIZATION_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("User-CSG-Information", AC_USER_CSG_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "User-CSG-Information_S6",
+    AC_USER_CSG_INFORMATION_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("User-Data", AC_USER_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "User-Data-Already-Available",
+    AC_USER_DATA_ALREADY_AVAILABLE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("User-Data-Sh", AC_USER_DATA_SH, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("User-Equipment-Info", AC_USER_EQUIPMENT_INFO, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "User-Equipment-Info-Type",
+    AC_USER_EQUIPMENT_INFO_TYPE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "User-Equipment-Info-Value",
+    AC_USER_EQUIPMENT_INFO_VALUE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("User-Id", AC_USER_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("User-Identifier", AC_USER_IDENTIFIER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("User-Identifier-S6t", AC_USER_IDENTIFIER_S6T, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("User-Identifier-T6", AC_USER_IDENTIFIER_T6, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("User-Identity", AC_USER_IDENTITY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("User-Location-Info-Time", AC_USER_LOCATION_INFO_TIME, AVP_FLAG_V, VENDOR_ID_3GPP, DT_TIME)
+  add("User-Name", AC_USER_NAME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "User-Participating-Type",
+    AC_USER_PARTICIPATING_TYPE,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("User-Password", AC_USER_PASSWORD, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("User-Priority-Range", AC_USER_PRIORITY_RANGE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("User-Session-ID", AC_USER_SESSION_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("User-State", AC_USER_STATE, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "UTRAN-Additional-Positioning-Data",
+    AC_UTRAN_ADDITIONAL_POSITIONING_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "UTRAN-GANSS-Postioning-Data",
+    AC_UTRAN_GANSS_POSTIONING_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "UTRAN-Positioning-Info",
+    AC_UTRAN_POSITIONING_INFO,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "UTRAN-Postioning-Data",
+    AC_UTRAN_POSTIONING_DATA,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("UTRAN-Vector", AC_UTRAN_VECTOR, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("UVA-Flags", AC_UVA_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("UVR-Flags", AC_UVR_FLAGS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "UWAN-User-Location-Info",
+    AC_UWAN_USER_LOCATION_INFO,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add("V2X-Permission", AC_V2X_PERMISSION, AVP_FLAG_V, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("V2X-Subscription-Data", AC_V2X_SUBSCRIPTION_DATA, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("Validity-Time", AC_VALIDITY_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Value-Digits", AC_VALUE_DIGITS, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_64)
+  add("VAS-ID", AC_VAS_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("VASP-ID", AC_VASP_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("Velocity-Estimate", AC_VELOCITY_ESTIMATE, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("Velocity-Requested", AC_VELOCITY_REQUESTED, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("Vendor-Id", AC_VENDOR_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Vendor-Specific-Application-Id",
+    AC_VENDOR_SPECIFIC_APPLICATION_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("Vertical-Accuracy", AC_VERTICAL_ACCURACY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add("Vertical-Requested", AC_VERTICAL_REQUESTED, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "Visited-Network-Identifier",
+    AC_VISITED_NETWORK_IDENTIFIER,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add(
+    "Visited-Network-Identifier_S6",
+    AC_VISITED_NETWORK_IDENTIFIER_S6,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_OCTET_STRING
+  )
+  add("Visited-PLMN-Id", AC_VISITED_PLMN_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("VLAN-ID-Range", AC_VLAN_ID_RANGE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Volume-Quota-Threshold",
+    AC_VOLUME_QUOTA_THRESHOLD,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "VPLMN-CSG-Subscription-Data",
+    AC_VPLMN_CSG_SUBSCRIPTION_DATA,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_GROUPED
+  )
+  add(
+    "VPLMN-Dynamic-Address-Allowed",
+    AC_VPLMN_DYNAMIC_ADDRESS_ALLOWED,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("VPLMN-LIPA-Allowed", AC_VPLMN_LIPA_ALLOWED, AVP_FLAG_V, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("WAG-Address", AC_WAG_ADDRESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ADDRESS)
+  add("WAG-PLMN-ID", AC_WAG_PLMN_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add(
+    "WebRTC-Authentication-Function-Name",
+    AC_WEBRTC_AUTHENTICATION_FUNCTION_NAME,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add(
+    "WebRTC-Web-Server-Function-Name",
+    AC_WEBRTC_WEB_SERVER_FUNCTION_NAME,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("Wildcarded-IMPU", AC_WILDCARDED_IMPU, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add(
+    "Wildcarded-Public-Identity",
+    AC_WILDCARDED_PUBLIC_IDENTITY,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UTF8STRING
+  )
+  add("WLAN-3GPP-IP-Access", AC_WLAN_3GPP_IP_ACCESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add("WLAN-Access", AC_WLAN_ACCESS, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_ENUMERATED)
+  add(
+    "WLAN-Direct-IP-Access",
+    AC_WLAN_DIRECT_IP_ACCESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ENUMERATED
+  )
+  add("WLAN-Identifier", AC_WLAN_IDENTIFIER, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add("WLAN-Information", AC_WLAN_INFORMATION, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("WLAN-offloadability", AC_WLAN_OFFLOADABILITY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_GROUPED)
+  add(
+    "WLAN-offloadability-EUTRAN",
+    AC_WLAN_OFFLOADABILITY_EUTRAN,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add(
+    "WLAN-offloadability-UTRAN",
+    AC_WLAN_OFFLOADABILITY_UTRAN,
+    AVP_FLAG_V,
+    VENDOR_ID_3GPP,
+    DT_UNSIGNED_32
+  )
+  add("WLAN-Radio-Container", AC_WLAN_RADIO_CONTAINER, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("WLAN-Session-ID", AC_WLAN_SESSION_ID, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UTF8STRING)
+  add("WLAN-Technology", AC_WLAN_TECHNOLOGY, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_UNSIGNED_32)
+  add(
+    "WLAN-UE-Local-IPAddress",
+    AC_WLAN_UE_LOCAL_IPADDRESS,
+    AVP_FLAG_V_M,
+    VENDOR_ID_3GPP,
+    DT_ADDRESS
+  )
+  add("WLAN-User-Data", AC_WLAN_USER_DATA, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_GROUPED)
+  add("WLCP-Key", AC_WLCP_KEY, AVP_FLAG_V, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("XRES", AC_XRES, AVP_FLAG_V_M, VENDOR_ID_3GPP, DT_OCTET_STRING)
+  add("User-Name", AC_USER_NAME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Proxy-State", AC_PROXY_STATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Host-Ip-Address", AC_HOST_IP_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("Auth-Application-Id", AC_AUTH_APPLICATION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Acct-Application-Id", AC_ACCT_APPLICATION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Vendor-Specific-Application-Id",
+    AC_VENDOR_SPECIFIC_APPLICATION_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("Redirect-Host-Usage", AC_REDIRECT_HOST_USAGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "Redirect-Max-Cache-Time",
+    AC_REDIRECT_MAX_CACHE_TIME,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Session-Id", AC_SESSION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Origin-Host", AC_ORIGIN_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Supported-Vendor-Id", AC_SUPPORTED_VENDOR_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Vendor-Id", AC_VENDOR_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Firmware-Revision", AC_FIRMWARE_REVISION, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Result-Code", AC_RESULT_CODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Product-Name", AC_PRODUCT_NAME, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Session-Binding", AC_SESSION_BINDING, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Session-Server-Failover",
+    AC_SESSION_SERVER_FAILOVER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Multi-Round-Time-Out",
+    AC_MULTI_ROUND_TIME_OUT,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Disconnect-Cause", AC_DISCONNECT_CAUSE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Auth-Request-Type", AC_AUTH_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Auth-Grace-Period", AC_AUTH_GRACE_PERIOD, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Auth-Session-State", AC_AUTH_SESSION_STATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Origin-State-Id", AC_ORIGIN_STATE_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Failed-AVP", AC_FAILED_AVP, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Proxy-Host", AC_PROXY_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Error-Message", AC_ERROR_MESSAGE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Route-Record", AC_ROUTE_RECORD, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add(
+    "Destination-Realm",
+    AC_DESTINATION_REALM,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add("Proxy-Info", AC_PROXY_INFO, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Re-Auth-Request-Type", AC_RE_AUTH_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Accounting-Sub-Session-Id",
+    AC_ACCOUNTING_SUB_SESSION_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Authorization-Lifetime",
+    AC_AUTHORIZATION_LIFETIME,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Redirect-Host", AC_REDIRECT_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_URI)
+  add("Destination-Host", AC_DESTINATION_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add(
+    "Error-Reporting-Host",
+    AC_ERROR_REPORTING_HOST,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add("Termination-Cause", AC_TERMINATION_CAUSE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Origin-Realm", AC_ORIGIN_REALM, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Experimental-Result", AC_EXPERIMENTAL_RESULT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Experimental-Result-Code",
+    AC_EXPERIMENTAL_RESULT_CODE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Inband-Security-Id", AC_INBAND_SECURITY_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("E2E-Sequence", AC_E2E_SEQUENCE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("DRMP", AC_DRMP, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("MIP-FA-To-HA-SPI", AC_MIP_FA_TO_HA_SPI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("MIP-FA-To-MN-SPI", AC_MIP_FA_TO_MN_SPI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("MIP-Reg-Request", AC_MIP_REG_REQUEST, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MIP-Reg-Reply", AC_MIP_REG_REPLY, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MIP-MN-AAA-Auth", AC_MIP_MN_AAA_AUTH, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-HA-To-FA-SPI", AC_MIP_HA_TO_FA_SPI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("MIP-MN-To-FA-MSA", AC_MIP_MN_TO_FA_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-FA-To-MN-MSA", AC_MIP_FA_TO_MN_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-FA-To-HA-MSA", AC_MIP_FA_TO_HA_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-HA-To-FA-MSA", AC_MIP_HA_TO_FA_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-MN-To-HA-MSA", AC_MIP_MN_TO_HA_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-HA-To-MN-MSA", AC_MIP_HA_TO_MN_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "MIP-Mobile-Node-Address",
+    AC_MIP_MOBILE_NODE_ADRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add(
+    "MIP-Home-Agent-Address",
+    AC_MIP_HOME_AGENT_ADDRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add("MIP-Nonce", AC_MIP_NONCE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "MIP-Candidate-Home-Agent-Host",
+    AC_MIP_CANDIDATE_HOME_AGENT_HOST,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add("MIP-Feature-Vector", AC_MIP_FEATURE_VECTOR, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "MIP-Auth-Input-Data-Length",
+    AC_MIP_AUTH_INPUT_DATA_LENGTH,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "MIP-Authenticator-Length",
+    AC_MIP_AUTHENTICATOR_LENGTH,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "MIP-Authenticator-Offset",
+    AC_MIP_AUTHENTICATOR_OFFSET,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("MIP-MN-AAA-SPI", AC_MIP_MN_AAA_SPI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("MIP-Filter-Rule", AC_MIP_FILTER_RULE, AVP_FLAG_M, VENDOR_ID_NONE, DT_IP_FILTER_RULE)
+  add("MIP-Session-Key", AC_MIP_SESSION_KEY, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MIP-FA-Challenge", AC_MIP_FA_CHALLENGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MIP-Algorithm-Type", AC_MIP_ALGORITHM_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("MIP-Replay-Mode", AC_MIP_REPLAY_MODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "MIP-Originating-Foreign-AAA",
+    AC_MIP_ORIGINATING_FOREIGN_AAA,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("MIP-Home-Agent-Host", AC_MIP_HOME_AGENT_HOST, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Accounting-Input-Octets",
+    AC_ACCOUNTING_INPUT_OCTETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Accounting-Output-Octets",
+    AC_ACCOUNTING_OUTPUT_OCTETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Accounting-Input-Packets",
+    AC_ACCOUNTING_INPUT_PACKETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Accounting-Output-Packets",
+    AC_ACCOUNTING_OUTPUT_PACKETS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("MIP_MSA_Lifetime", AC_MIP_MSA_LIFETIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "SIP-Accounting-Information",
+    AC_SIP_ACCOUNTING_INFORMATION,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "SIP-Accounting-Server-URI",
+    AC_SIP_ACCOUNTING_SERVER_URI,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add(
+    "SIP-Credit-Control-Server-URI",
+    AC_SIP_CREDIT_CONTROL_SERVER_URI,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_DIAMETER_IDENTITY
+  )
+  add("SIP-Server-URI", AC_SIP_SERVER_URI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "SIP-Server-Capabilities",
+    AC_SIP_SERVER_CAPABILITIES,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "SIP-Mandatory-Capability",
+    AC_SIP_MANDATORY_CAPABILITY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "SIP-Optional-Capability",
+    AC_SIP_OPTIONAL_CAPABILITY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "SIP-Server-Assignment-Type",
+    AC_SIP_SERVER_ASSIGNMENT_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("SIP-Auth-Data-Item", AC_SIP_AUTH_DATA_ITEM, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "SIP-Authentication-Scheme",
+    AC_SIP_AUTHENTICATION_SCHEME,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("SIP-Item-Number", AC_SIP_ITEM_NUMBER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("SIP-Authenticate", AC_SIP_AUTHENTICATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("SIP-Authorization", AC_SIP_AUTHORIZATION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "SIP-Authentication-Info",
+    AC_SIP_AUTHENTICATION_INFO,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "SIP-Number-Auth-Items",
+    AC_SIP_NUMBER_AUTH_ITEMS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "SIP-Deregistration-Reason",
+    AC_SIP_DEREGISTRATION_REASON,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("SIP-Reason-Code", AC_SIP_REASON_CODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("SIP-Reason-Info", AC_SIP_REASON_INFO, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "SIP-Visited-Network-Id",
+    AC_SIP_VISITED_NETWORK_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add(
+    "SIP-User-Authorization-Type",
+    AC_SIP_USER_AUTHORIZATION_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "SIP-Supported-User-Data-Type",
+    AC_SIP_SUPPORTED_USER_DATA_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("SIP-User-Data", AC_SIP_USER_DATA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("SIP-User-Data-Type", AC_SIP_USER_DATA_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "SIP-User-Data-Contents",
+    AC_SIP_USER_DATA_CONTENTS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "SIP-User-Data-Already-Available",
+    AC_SIP_USER_DATA_ALREADY_AVAILABLE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("SIP-Method", AC_SIP_METHOD, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("NAS-Filter-Rule", AC_NAS_FILTER_RULE, AVP_FLAG_M, VENDOR_ID_NONE, DT_IP_FILTER_RULE)
+  add("Tunneling", AC_TUNNELING, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("CHAP-Auth", AC_CHAP_AUTH, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("CHAP-Algorithm", AC_CHAP_ALGORTIHM, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("CHAP-Ident", AC_CHAP_IDENT, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("CHAP-Response", AC_CHAP_RESPONSE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "Accounting-Auth-Method",
+    AC_ACCOUNTING_AUTH_METHOD,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("QoS-Filter-Rule", AC_QoS_FILTER_RULE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_QoS_FILTER_RULE)
+  add("Origin-AAA-Protocol", AC_ORIGIN_AAA_PROTOCOL, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("CC-Correlation-Id", AC_CC_CORRELATION_ID, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("CC-Input-Octets", AC_CC_INPUT_OCTETS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Money", AC_CC_MONEY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("CC-Output-Octets", AC_CC_OUTPUT_OCTETS, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Request-Number", AC_CC_REQUEST_NUMBER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("CC-Request-Type", AC_CC_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "CC-Service-Specific-Units",
+    AC_CC_SERVICE_SPECIFIC_UNITS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add("CC-Session-Failover", AC_CC_SESSION_FAILOVER, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("CC-Sub-Session-Id", AC_CC_SUB_SESSION_ID, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("CC-Time", AC_CC_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("CC-Total-Octets", AC_CC_TOTAL_OCTETS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("Check-Balance-Result", AC_CHECK_BALANCE_RESULT, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Cost-Information", AC_COST_INFORMATION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Cost-Unit", AC_COST_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Currency-Code", AC_CURRENCY_CODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Credit-Control", AC_CREDIT_CONTROL, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Credit-Control-Failure-Handling",
+    AC_CREDIT_CONTROL_FAILURE_HANDLING,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Direct-Debiting-Failure-Handling",
+    AC_CREDIT_CONTROL_FAILURE_HANDLING,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Exponent", AC_EXPONENT, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Final-Unit-Indication", AC_FINAL_UNIT_INDICATION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Granted-Service-Unit", AC_GRANTED_SERVICE_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Rating-Group", AC_RATING_GROUP, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Redirect-Address-Type",
+    AC_REDIRECT_ADDRESS_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("Redirect-Server", AC_REDIRECT_SERVER, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Redirect-Server-Address",
+    AC_REDIRECT_SERVER_ADDRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Request-Action", AC_REQUEST_ACTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Request-Service-Unit", AC_REQUEST_SERVICE_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Restriction-Filter-Rule",
+    AC_RESTRICTION_FILTER_RULE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_IP_FILTER_RULE
+  )
+  add("Service-Identifier", AC_SERVICE_IDENTIFIER, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Service-Parameter-Info",
+    AC_SERVICE_PARAMETER_INFO,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "Service-Parameter-Type",
+    AC_SERVICE_PARAMETER_TYPE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add(
+    "Service-Parameter-Value",
+    AC_SERVICE_PARAMETER_TYPE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Subscription-Id", AC_SUBSCRIPTION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Subscription-Id-Data", AC_SUBSCRIPTION_ID_DATA, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("Unit-Value", AC_UNIT_VALUE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Used-Service-Unit", AC_USED_SERVICE_UNIT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Value-Digits", AC_VALUE_DIGITS, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_64)
+  add("Validity-Time", AC_VALIDITY_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Final-Unit-Action", AC_FINAL_UNIT_ACTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Subscription-Id-Type", AC_SUBSCRIPTION_ID_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Tariff-Time-Change", AC_TARIFF_TIME_CHANGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_TIME)
+  add("Tariff-Change-Usage", AC_TARIFF_CHANGE_USAGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "G-S-U-Pool-Identifier",
+    AC_G_S_U_POOL_IDENTIFIER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("CC-Unit-Type", AC_CC_UNIT_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "Multiple-Service-Indicator",
+    AC_MULTIPLE_SERVICES_INDICATOR,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Multiple-Service-Credit-Control",
+    AC_MULTIPLE_SERVICES_CREDIT_CONTROL,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("G-S-U-Pool-Reference", AC_G_S_U_POOL_REFERENCE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("User-Equipment-Info", AC_USER_EQUIPMENT_INFO, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "User-Equipment-Info-Type",
+    AC_USER_EQUIPMENT_INFO_TYPE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "User-Equipment-Info-Value",
+    AC_USER_EQUIPMENT_INFO_VALUE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Service-Context-Id", AC_SERVICE_CONTEXT_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("EAP-Payload", AC_EAP_PAYLOAD, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "EAP-Reissued-Payload",
+    AC_EAP_REISSUED_PAYLOAD,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "EAP-Master-Session-Key",
+    AC_EAP_MASTER_SESSION_KEY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Accounting-EAP-Auth-Method",
+    AC_ACCOUNTING_EAP_AUTH_METHOD,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_64
+  )
+  add(
+    "Accounting-Record-Type",
+    AC_ACCOUNTING_RECORD_TYPE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Accounting-Realtime-Required",
+    AC_ACCOUNTING_REALTIME_REQUIRED,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Accounting-Record-Number",
+    AC_ACCOUNTING_RECORD_NUMBER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("MIP6-Agent-Info", AC_MIP6_AGENT_INFO, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("MIP-Careof-Address", AC_MIP_CAREOF_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("MIP-Authenticator", AC_MIP_AUTHENTICATOR, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add(
+    "MIP-MAC-Mobility-Data",
+    AC_MIP_MAC_MOBILITY_DATA,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("MIP-Timestamp", AC_MIP_TIMESTAMP, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MIP-MN-HA-SPI", AC_MIP_MN_HA_SPI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("MIP-MN-HA-MSA", AC_MIP_MN_HA_MSA, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Service-Selection", AC_SERVICE_SELECTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add("MIP6-Auth-Mode", AC_MIP6_AUTH_MODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("TMOD-1", AC_TMOD_1, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Token-Rate", AC_TOKEN_RATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_FLOAT_32)
+  add("Buket-Depth", AC_BUCKET_DEPTH, AVP_FLAG_M, VENDOR_ID_NONE, DT_FLOAT_32)
+  add("Peak-Traffic-Rate", AC_PEAK_TRAFFIC_RATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_FLOAT_32)
+  add(
+    "Minimum-Policed-Unit",
+    AC_MINIMUM_POLICED_UNIT,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Maximum-Packet-Size", AC_MAXIMUM_PACKET_SIZE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("TMOD-2", AC_TMOD_2, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Bandwith", AC_BANDWITH, AVP_FLAG_M, VENDOR_ID_NONE, DT_FLOAT_32)
+  add("PHB-Class", AC_PHB_CLASS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "PMIP6-DHCP-Server-Address",
+    AC_PMIP6_DHCP_SERVER_ADDRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add(
+    "PMIP6-IPv4-Home-Address",
+    AC_PMIP6_IPV4_HOME_ADDRESS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add(
+    "Mobile-Node-Identifier",
+    AC_MOBILE_NODE_IDENTIFIER,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Service-Configuration", AC_SERVICE_CONFIGURATION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Resources", AC_QoS_RESOURCES, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Filter-Rule", AC_FILTER_RULE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Filter-Rule-Precedence",
+    AC_FILTER_RULE_PRECEDENCE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Classifier", AC_CLASSIFIER, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Classifier-Id", AC_CLASSIFIER_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Protocol", AC_PROTOCOL, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Direction", AC_DIRECTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("From-Spec", AC_FROM_SPEC, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("To-Spec", AC_TO_SPEC, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Negated", AC_NEGATED, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Ip-Address", AC_IP_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("Ip-Address-Range", AC_IP_ADDRESS_RANGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Ip-Address-Start", AC_IP_ADDRESS_START, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("Ip-Address-End", AC_IP_ADDRESS_END, AVP_FLAG_M, VENDOR_ID_NONE, DT_ADDRESS)
+  add("Ip-Address-Mask", AC_PHB_CLASS, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Ip-Mask-Bit-Mask-Width",
+    AC_IP_MASK_BIT_MASK_WIDTH,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("MAC-Address", AC_MAC_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("MAC-Address-Mask", AC_MAC_ADDRESS_MASK, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "MAC-Address-Mask-Pattern",
+    AC_MAC_ADDRESS_MASK_PATTERN,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("EUI64-Address", AC_EUI64_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("EUI64-Address-Mask", AC_EUI64_ADDRESS_MASK, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "EUI64-Address-Mask-Pattern",
+    AC_EUI64_ADDRESS_MASK_PATTERN,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Port", AC_PORT, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Port-Range", AC_PORT_RANGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Port-Start", AC_PORT_START, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Port-End", AC_PORT_END, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Use-Assigned-Address", AC_USE_ASSIGNED_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Diffserv-Code-Point", AC_DIFFSERV_CODE_POINT, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Fragmentation-Flag", AC_FRAGMENTATION_FLAG, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("IP-Option", AC_IP_OPTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("IP-Option-Type", AC_IP_OPTION_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("IP-Option-Value", AC_IP_OPTION_VALUE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("TCP-Option", AC_TCP_OPTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("TCP-Option-Type", AC_TCP_OPTION_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("TCP-Option-Value", AC_TCP_OPTION_VALUE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("TCP-Flags", AC_TCP_FLAGS, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("TCP-Flag-Type", AC_TCP_FLAG_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("ICMP-Type", AC_ICMP_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("ICMP-Type-Number", AC_ICMP_TYPE_NUMBER, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("ICMP-Code", AC_ICMP_CODE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("ETH-Option", AC_ETH_OPTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("ETH-Proto-Type", AC_ETH_PROTO_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("ETH-Ether-Type", AC_ETH_ETHER_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("ETH-SAP", AC_ETH_SAP, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("VLAN-ID-Range", AC_VLAN_ID_RANGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("S-VID-Start", AC_S_VID_START, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("S-VID-End", AC_S_VID_END, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("C-VID-Start", AC_C_VID_START, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("C-VID-End", AC_C_VID_END, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("User-Priority-Range", AC_USER_PRIORITY_RANGE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Low-User-Priority", AC_LOW_USER_PRIORITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("High-User-Priority", AC_HIGH_USER_PRIORITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Time-Of-Day-Condition", AC_TIME_OF_DAY_CONDITION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Time-Of-Day-Start", AC_TIME_OF_DAY_START, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Time-Of-Day-End", AC_TIME_OF_DAY_END, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Day-Of-Week-Mask", AC_DAY_OF_WEEK_MASK, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Day-Of-Month-Mask", AC_DAY_OF_MONTH_MASK, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Month-Of-Year-Mask", AC_MONTH_OF_YEAR_MASK, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Absolute-Start-Time", AC_ABSOLUTE_START_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_TIME)
+  add(
+    "Absolute-Start-Fractional-Seconds",
+    AC_ABSOLUTE_START_FRACTIONAL_SECONDS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Absolute-End-Time", AC_ABSOLUTE_END_TIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_TIME)
+  add(
+    "Absolute-End-Fractional-Seconds",
+    AC_ABSOLUTE_END_FRACTIONAL_SECONDS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Timezone-Flag", AC_TIMEZONE_FLAG, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Timezone-Offset", AC_TIMEZONE_OFFSET, AVP_FLAG_M, VENDOR_ID_NONE, DT_INTEGER_32)
+  add("Treatment-Action", AC_TREATMENT_ACTION, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Profile-Id", AC_QoS_PROFILE_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("QoS-Profile-Template", AC_QoS_PROFILE_TEMPLATE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Semantics", AC_QoS_SEMANTICS, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("QoS-Parameters", AC_QoS_PARAMETERS, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Excess-Treatment", AC_EXCESS_TREATMENT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("QoS-Capability", AC_QoS_CAPABILITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "QoS-Authorization-Data",
+    AC_QoS_AUTHORIZATION_DATA,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "Bound-Auth-Session-Id",
+    AC_BOUND_AUTH_SESSION_ID,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add("Key", AC_KEY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Key-Type", AC_KEY_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Keying-Material", AC_KEYING_MATERIAL, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Key-Lifetime", AC_KEY_LIFETIME, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Key-SPI", AC_KEY_SPI, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("Key-Name", AC_KEY_NAME, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("IKEv2-Nonces", AC_IKEv2_NONCES, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("NI", AC_NI, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("NR", AC_NR, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("IKEv2-Identity", AC_IKEv2_IDENTITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Initiator-Identity", AC_INITIATOR_IDENTITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Id-Type", AC_ID_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Identification-Data", AC_IDENTIFICATION_DATA, AVP_FLAG_M, VENDOR_ID_NONE, DT_OCTET_STRING)
+  add("Responder-Identity", AC_RESPONDER_IDENTITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("NC-Request-Type", AC_NC_REQUEST_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("NAT-Control-Install", AC_NAT_CONTROL_INSTALL, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("NAT-Control-Remove", AC_NAT_CONTROL_REMOVE, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "NAT-Control-Definition",
+    AC_NAT_CONTROL_DEFINITION,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("NAT-Internal-Address", AC_NAT_INTERNAL_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("NAT-External-Address", AC_NAT_EXTERNAL_ADDRESS, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Max-NAT-Bindings", AC_MAX_NAT_BINDINGS, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "NAT-Control-Binding-Template",
+    AC_NAT_CONTROL_BINDING_TEMPLATE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("Duplicate-Session-Id", AC_DUPLICATE_SESSION_ID, AVP_FLAG_M, VENDOR_ID_NONE, DT_UTF8STRING)
+  add(
+    "NAT-External-Port-Style",
+    AC_NAT_EXTERNAL_PORT_STYLE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add("NAT-Control-Record", AC_NAT_CONTROL_RECORD, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "NAT-Control-Binding-Status",
+    AC_NAT_CONTROL_BINDING_STATUS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_ENUMERATED
+  )
+  add(
+    "Current-NAT-Bindings",
+    AC_CURRENT_NAT_BINDINGS,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("Dual-Priority", AC_DUAL_PRIORITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Preemtion-Priority",
+    AC_PREEMPTION_PRIORITY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  ) // Unsigned16?
+  add(
+    "Defending-Priority",
+    AC_DEFENDING_PRIORITY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  ) // Unsigned16?
+  add(
+    "Admission-Priority",
+    AC_ADMISSION_PRIORITY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  ) // Unsigned8?
+  add("SIP-Resource-Priority", AC_SIP_RESOURCE_PRIORITY, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "SIP-Resource-Priority-Namespace",
+    AC_SIP_RESOURCE_PRIORITY_NAMESPACE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add(
+    "SIP-Resource-Priority-Value",
+    AC_SIP_RESOURCE_PRIORITY_VALUE,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_UTF8STRING
+  )
+  add(
+    "Application-Level-Resource-Priority",
+    AC_APPLICATION_LEVEL_RESOURCE_PRIORITY,
+    AVP_FLAG_M,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("ALRP-Namespace", AC_ALRP_NAMESPACE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("ALRP-Value", AC_ALRP_VALUE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("ERP-RK-Request", AC_ERP_RK_REQUEST, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("ERP-Realm", AC_ERP_REALM, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Redirect-Realm", AC_REDIRECT_REALM, AVP_FLAG_M, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add(
+    "OC-Supported-Features",
+    AC_OC_SUPPORTED_FEATURES,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("OC-Feature-Vector", AC_OC_FEATURE_VECTOR, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("OC-OLR", AC_OC_OLR, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("OC-Sequence-Number", AC_OC_SEQUENCE_NUMBER, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add(
+    "OC-Validity-Duration",
+    AC_OC_VALIDITY_DURATION,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("OC-Report-Type", AC_OC_REPORT_TYPE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add(
+    "OC-Reduction-Percentage",
+    AC_OC_REDUCTION_PERCENTAGE,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_UNSIGNED_32
+  )
+  add("ECN-IP-Codepoint", AC_ECN_IP_CODEPOINT, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Congestion-Treatment", AC_CONGESTION_TREATMENT, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Flow-Count", AC_FLOW_COUNT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("Packet-Count", AC_PACKET_COUNT, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("IP-Prefix-Length", AC_IP_PREFIX_LENGTH, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add(
+    "Border-Router-Name",
+    AC_BORDER_ROUTER_NAME,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add(
+    "64-Multicast-Attributes",
+    AC_64_MULTICAST_ATTRIBUTES,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("ASM-MPrefix64", AC_ASM_MPREFIX64, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("SSM-MPrefix64", AC_SSM_MPREFIX64, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Tunnel-Source-Pref-or-Addr",
+    AC_TUNNEL_SOURCE_PREF_OR_ADDR,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add(
+    "Tunnel-Source-IPv6-Address",
+    AC_TUNNEL_SOURCE_IPv6_ADDRESS,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add(
+    "Port-Set-Identifier",
+    AC_PORT_SET_IDENTIFIER,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_OCTET_STRING
+  )
+  add("LW4O6-Binding", AC_LW4O6_BINDING, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "LW4O6-External-IPv4-Addr",
+    AC_LW4O6_EXTERNAL_IPv4_ADDR,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_ADDRESS
+  )
+  add("Map-E-Attributes", AC_MAP_E_ATTRIBUTES, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("Map-Mesh-Mode", AC_MAP_MESH_MODE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Map-Mapping-Rule", AC_MAP_MAPPING_RULE, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add(
+    "Rule-IPv4-Addr-or-Prefix",
+    AC_RULE_IPv4_ADDR_OR_PREFIX,
+    AVP_FLAG_NONE,
+    VENDOR_ID_NONE,
+    DT_GROUPED
+  )
+  add("Rule-IPv6-Prefix", AC_RULE_IPv6_PREFIX, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_GROUPED)
+  add("EA-Field-Length", AC_EA_FIELD_LENGTH, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_32)
+  add("OC-Peer-Algo", AC_OC_PEER_ALGO, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_UNSIGNED_64)
+  add("SourceID", AC_SOURCEID, AVP_FLAG_NONE, VENDOR_ID_NONE, DT_DIAMETER_IDENTITY)
+  add("Load", AC_LOAD, AVP_FLAG_M, VENDOR_ID_NONE, DT_GROUPED)
+  add("Load-Type", AC_LOAD_TYPE, AVP_FLAG_M, VENDOR_ID_NONE, DT_ENUMERATED)
+  add("Load-Value", AC_LOAD_VALUE, AVP_FLAG_M, VENDOR_ID_NONE, DT_UNSIGNED_64)
+}
+private val DEFAULT_DICT_DATA = AVPDictionaryData("Unknown", 0L, ZERO_BYTE, 0L, DT_UNKNOWN)
+
+
+fun getDictionaryData(code: Long, vendorId: Long): AVPDictionaryData =
+  dictionary[AVPKey(code, vendorId)] ?: DEFAULT_DICT_DATA
